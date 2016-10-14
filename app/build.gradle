@@ -1,0 +1,244 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.squareup.sqldelight'
+apply plugin: 'com.neenbedankt.android-apt'
+apply from: '../config/quality/quality.gradle'
+
+android {
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion rootProject.ext.buildToolsVersion
+
+    defaultConfig {
+        applicationId rootProject.ext.applicationId
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+
+        versionCode rootProject.ext.versionCode
+        // Major -> Millions, Minor -> Thousands, Bugfix -> Hundreds. E.g 1.3.72 == 1,003,072
+        versionName rootProject.ext.versionName
+
+        testInstrumentationRunner "${applicationId}.runner.RxAndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        // 读取release版本的签名文件
+        def Properties localProps = new Properties()
+        localProps.load(new FileInputStream(file('../local.properties')))
+
+        def Properties keyProps = new Properties()
+        if (localProps['keystore.properties.file']) {
+            keyProps.load(new FileInputStream(file(localProps['keystore.properties.file'])))
+        } else {
+            // 如果读取不到'keystore.props.file'属性，就使用默认的debug keystore
+            keyProps["store"] = '../debug.keystore'
+            keyProps["alias"] = 'androiddebugkey'
+            keyProps["storePass"] = 'android'
+            keyProps["pass"] = 'android'
+        }
+
+        release {
+            // release版本使用assert确保存在该属性否则报错，避免错误打包
+            assert localProps['keystore.properties.file'] != null;
+
+            storeFile file(keyProps["store"])
+            keyAlias keyProps["alias"]
+            storePassword keyProps["storePass"]
+            keyPassword keyProps["pass"]
+        }
+
+        debug {
+            storeFile file('keystore/debug.keystore')
+            keyAlias 'androiddebugkey'
+            storePassword 'android'
+            keyPassword 'android'
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+
+            ext.betaDistributionReleaseNotesFilePath =
+                    file('../crashlytics_release_notes.txt').absolutePath
+        }
+
+        debug {
+            signingConfig signingConfigs.debug
+
+            versionNameSuffix "Debug"
+            debuggable true
+        }
+    }
+
+    sourceSets {
+        def commonTestDir = 'src/commonTest/java'
+        test {
+            java.srcDir commonTestDir
+        }
+        androidTest {
+            java.srcDir commonTestDir
+        }
+    }
+
+    // APK Splits
+    splits {
+        abi {
+            enable true
+            reset()
+            include 'armeabi', 'x86' // 'x86', 'armeabi-v7a', 'mips'
+            universalApk true
+        }
+    }
+
+    // Needed because of this https://github.com/square/okio/issues/58
+    lintOptions {
+        warning 'InvalidPackage'
+    }
+
+    packagingOptions {
+        exclude 'LICENSE'
+        exclude 'README.md'
+    }
+}
+
+dependencies {
+    final SUPPORT_LIBRARY_VERSION = '24.2.1'
+
+    final DAGGER_VERSION = '2.5'
+
+    final RXJAVA_VERSION = '1.1.6'
+    final RXANDROID_VERISON = '1.2.1'
+
+    final RETROFIT_VERSION = '2.1.0'
+    final OKHTTP_VERSION = '3.4.0'
+
+    final SQLBRITE_VERSION = '0.5.0'
+    final AUTO_VALUE_VERSION = '1.3'
+    final AUTO_VALUE_GSON_VERSION = '0.4.2'
+
+    final GLIDE_VERSION = '3.7.0'
+
+    final BUTTERKNIFE_VERSION = '8.4.0'
+
+    final TIMBER_VERSION = '4.1.2'
+
+    final JUNIT_VERSION = '4.12'
+    final MOCKITO_VERSION = '1.10.19'
+    final HAMCREST_VERSION = '1.3'
+    final ROBOLECTRIC_VERSION = '3.1'
+
+    final ESPRESSO_VERSION = '2.2.1'
+    final SUPPORT_TEST_VERSION = '0.4'
+    final DEXMAKER_VERSION = '1.4'
+
+
+    def libSupportAppcompatV7 = "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
+    def libSupportRecyclerviewV7 = "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
+    def libSupportCardviewV7 = "com.android.support:cardview-v7:$SUPPORT_LIBRARY_VERSION"
+    def libSupportAnnotations = "com.android.support:support-annotations:$SUPPORT_LIBRARY_VERSION"
+
+    def libDagger = "com.google.dagger:dagger:$DAGGER_VERSION"
+    def libDaggerCompiler = "com.google.dagger:dagger-compiler:$DAGGER_VERSION"
+
+    def libRxjava = "io.reactivex:rxjava:$RXJAVA_VERSION"
+    def libRxandroid = "io.reactivex:rxandroid:$RXANDROID_VERISON"
+
+    def libRetrofit = "com.squareup.retrofit2:retrofit:$RETROFIT_VERSION"
+    def libConverterGson = "com.squareup.retrofit2:converter-gson:$RETROFIT_VERSION"
+    def libAdapterRxjava = "com.squareup.retrofit2:adapter-rxjava:$RETROFIT_VERSION"
+    def libLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:$OKHTTP_VERSION"
+
+    def libSqlbrite = "com.squareup.sqlbrite:sqlbrite:$SQLBRITE_VERSION"
+
+    def libGlide = "com.github.bumptech.glide:glide:$GLIDE_VERSION"
+
+    def libButterknife = "com.jakewharton:butterknife:$BUTTERKNIFE_VERSION"
+    def libButterknifeCompiler = "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION"
+
+    def libTimber = "com.jakewharton.timber:timber:$TIMBER_VERSION"
+
+    def libJUnit = "junit:junit:$JUNIT_VERSION"
+    def libMockitoCore = "org.mockito:mockito-core:$MOCKITO_VERSION"
+    def libHamcrestCore = "org.hamcrest:hamcrest-core:$HAMCREST_VERSION"
+    def libHamcrestLibrary = "org.hamcrest:hamcrest-library:$HAMCREST_VERSION"
+    def libHamcrestIntegration = "org.hamcrest:hamcrest-integration:$HAMCREST_VERSION"
+    def libRobolectric = "org.robolectric:robolectric:$ROBOLECTRIC_VERSION"
+
+    def libEspressoContrib = "com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION"
+    def libEspressoCore = "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
+    def libSupportTestRunner = "com.android.support.test:runner:$SUPPORT_TEST_VERSION"
+    def libSupportTestRules = "com.android.support.test:rules:$SUPPORT_TEST_VERSION"
+    def libDexmaker = "com.crittercism.dexmaker:dexmaker:$DEXMAKER_VERSION"
+    def libDexmakerDx = "com.crittercism.dexmaker:dexmaker-dx:$DEXMAKER_VERSION"
+    def libDexmakerMockito = "com.crittercism.dexmaker:dexmaker-mockito:$DEXMAKER_VERSION"
+
+
+    // App Dependencies
+    compile libSupportAppcompatV7
+    compile libSupportRecyclerviewV7
+    compile libSupportCardviewV7
+    compile libSupportAnnotations
+
+    compile libDagger
+    provided 'org.glassfish:javax.annotation:10.0-b28' // Required by Dagger2
+    apt libDaggerCompiler
+    testApt libDaggerCompiler
+    androidTestApt libDaggerCompiler
+
+    compile libRxjava
+    compile libRxandroid
+
+    compile libRetrofit
+    compile libConverterGson
+    compile libAdapterRxjava
+    compile libLoggingInterceptor
+
+    compile libSqlbrite
+
+    compile libGlide
+
+    compile libButterknife
+    apt libButterknifeCompiler
+
+    compile libTimber
+
+    provided "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
+    apt "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
+    apt 'com.ryanharter.auto.value:auto-value-parcel:0.2.4-rc2'
+    provided "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
+    apt "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
+    apt 'com.squareup:javapoet:1.7.0' // https://github.com/rharter/auto-value-parcel/issues/64
+
+
+    // Unit tests dependencies
+    testCompile libJUnit
+    testCompile libMockitoCore
+    testCompile libHamcrestCore
+    testCompile libHamcrestLibrary
+    testCompile libHamcrestIntegration
+    testCompile libRobolectric
+
+
+    // Instrumentation test dependencies
+    androidTestCompile libJUnit
+    androidTestCompile libMockitoCore
+    androidTestCompile libSupportAnnotations
+    androidTestCompile(libEspressoContrib) {
+        exclude group: 'com.android.support', module: 'appcompat'
+        exclude group: 'com.android.support', module: 'support-v4'
+        exclude group: 'com.android.support', module: 'recyclerview-v7'
+    }
+    androidTestCompile libEspressoCore
+    androidTestCompile libSupportTestRunner
+    androidTestCompile libSupportTestRules
+    androidTestCompile libDexmaker
+    androidTestCompile libDexmakerDx
+    androidTestCompile libDexmakerMockito
+}
+
+// Log out test results to console
+tasks.matching {it instanceof Test}.all {
+    testLogging.events = ["failed", "passed", "skipped"]
+}
