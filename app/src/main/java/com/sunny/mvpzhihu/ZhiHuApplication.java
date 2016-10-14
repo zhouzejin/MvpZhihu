@@ -8,7 +8,7 @@ import com.sunny.mvpzhihu.injection.component.DaggerApplicationComponent;
 import com.sunny.mvpzhihu.injection.module.ApplicationModule;
 import com.sunny.mvpzhihu.utils.LogUtil;
 
-public class BoilerplateApplication extends Application  {
+public class ZhiHuApplication extends Application  {
 
     ApplicationComponent mApplicationComponent;
 
@@ -19,8 +19,8 @@ public class BoilerplateApplication extends Application  {
         LogUtil.initLog();
     }
 
-    public static BoilerplateApplication get(Context context) {
-        return (BoilerplateApplication) context.getApplicationContext();
+    public static ZhiHuApplication get(Context context) {
+        return (ZhiHuApplication) context.getApplicationContext();
     }
 
     public ApplicationComponent getComponent() {

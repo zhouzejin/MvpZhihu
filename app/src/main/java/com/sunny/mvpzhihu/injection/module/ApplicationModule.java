@@ -3,14 +3,15 @@ package com.sunny.mvpzhihu.injection.module;
 import android.app.Application;
 import android.content.Context;
 
-import javax.inject.Singleton;
-
-import dagger.Module;
-import dagger.Provides;
 import com.sunny.mvpzhihu.data.remote.SubjectsService;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 import com.sunny.mvpzhihu.utils.imageloader.GlideImageLoader;
 import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
+
+import javax.inject.Singleton;
+
+import dagger.Module;
+import dagger.Provides;
 
 /**
  * Provide application-level dependencies.
@@ -19,8 +20,6 @@ import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
 public class ApplicationModule {
 
     protected final Application mApplication;
-
-    private ImageLoader mImageLoader;
 
     public ApplicationModule(Application application) {
         mApplication = application;

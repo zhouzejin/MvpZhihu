@@ -6,7 +6,7 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 import org.junit.runners.model.Statement;
 
-import com.sunny.mvpzhihu.BoilerplateApplication;
+import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.data.DataManager;
 import com.sunny.mvpzhihu.test.common.injection.component.DaggerTestComponent;
 import com.sunny.mvpzhihu.test.common.injection.component.TestComponent;
@@ -26,7 +26,7 @@ public class TestComponentRule implements TestRule {
 
     public TestComponentRule(Context context) {
         mContext = context;
-        BoilerplateApplication application = BoilerplateApplication.get(context);
+        ZhiHuApplication application = ZhiHuApplication.get(context);
         mTestComponent = DaggerTestComponent.builder()
                 .applicationTestModule(new ApplicationTestModule(application))
                 .build();
@@ -45,7 +45,7 @@ public class TestComponentRule implements TestRule {
         return new Statement() {
             @Override
             public void evaluate() throws Throwable {
-                BoilerplateApplication application = BoilerplateApplication.get(mContext);
+                ZhiHuApplication application = ZhiHuApplication.get(mContext);
                 application.setComponent(mTestComponent);
                 base.evaluate();
                 application.setComponent(null);

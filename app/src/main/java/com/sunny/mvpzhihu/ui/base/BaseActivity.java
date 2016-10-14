@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
-import com.sunny.mvpzhihu.BoilerplateApplication;
+import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.injection.component.ConfigPersistentComponent;
 import com.sunny.mvpzhihu.injection.component.DaggerConfigPersistentComponent;
 import com.sunny.mvpzhihu.utils.LogUtil;
@@ -37,7 +37,7 @@ public class BaseActivity extends AppCompatActivity {
         if (!sComponentsMap.containsKey(mActivityId)) {
             LogUtil.i("Creating new ConfigPersistentComponent id=%d", mActivityId);
             mConfigPersistentComponent = DaggerConfigPersistentComponent.builder()
-                    .applicationComponent(BoilerplateApplication.get(this).getComponent())
+                    .applicationComponent(ZhiHuApplication.get(this).getComponent())
                     .build();
             sComponentsMap.put(mActivityId, mConfigPersistentComponent);
         } else {

@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import rx.Observer;
 import rx.Subscription;
 import rx.schedulers.Schedulers;
-import com.sunny.mvpzhihu.BoilerplateApplication;
+import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
 import com.sunny.mvpzhihu.utils.AndroidComponentUtil;
 import com.sunny.mvpzhihu.utils.LogUtil;
@@ -34,7 +34,7 @@ public class SyncService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
-        BoilerplateApplication.get(this).getComponent().inject(this);
+        ZhiHuApplication.get(this).getComponent().inject(this);
     }
 
     @Override
