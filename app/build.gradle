@@ -124,15 +124,6 @@ dependencies {
 
     final TIMBER_VERSION = '4.1.2'
 
-    final JUNIT_VERSION = '4.12'
-    final MOCKITO_VERSION = '1.10.19'
-    final HAMCREST_VERSION = '1.3'
-    final ROBOLECTRIC_VERSION = '3.1'
-
-    final ESPRESSO_VERSION = '2.2.1'
-    final SUPPORT_TEST_VERSION = '0.4'
-    final DEXMAKER_VERSION = '1.4'
-
 
     def libSupportAppcompatV7 = "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
     def libSupportRecyclerviewV7 = "com.android.support:recyclerview-v7:$SUPPORT_LIBRARY_VERSION"
@@ -158,21 +149,6 @@ dependencies {
     def libButterknifeCompiler = "com.jakewharton:butterknife-compiler:$BUTTERKNIFE_VERSION"
 
     def libTimber = "com.jakewharton.timber:timber:$TIMBER_VERSION"
-
-    def libJUnit = "junit:junit:$JUNIT_VERSION"
-    def libMockitoCore = "org.mockito:mockito-core:$MOCKITO_VERSION"
-    def libHamcrestCore = "org.hamcrest:hamcrest-core:$HAMCREST_VERSION"
-    def libHamcrestLibrary = "org.hamcrest:hamcrest-library:$HAMCREST_VERSION"
-    def libHamcrestIntegration = "org.hamcrest:hamcrest-integration:$HAMCREST_VERSION"
-    def libRobolectric = "org.robolectric:robolectric:$ROBOLECTRIC_VERSION"
-
-    def libEspressoContrib = "com.android.support.test.espresso:espresso-contrib:$ESPRESSO_VERSION"
-    def libEspressoCore = "com.android.support.test.espresso:espresso-core:$ESPRESSO_VERSION"
-    def libSupportTestRunner = "com.android.support.test:runner:$SUPPORT_TEST_VERSION"
-    def libSupportTestRules = "com.android.support.test:rules:$SUPPORT_TEST_VERSION"
-    def libDexmaker = "com.crittercism.dexmaker:dexmaker:$DEXMAKER_VERSION"
-    def libDexmakerDx = "com.crittercism.dexmaker:dexmaker-dx:$DEXMAKER_VERSION"
-    def libDexmakerMockito = "com.crittercism.dexmaker:dexmaker-mockito:$DEXMAKER_VERSION"
 
 
     // App Dependencies
@@ -210,35 +186,4 @@ dependencies {
     provided "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
     apt "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
     apt 'com.squareup:javapoet:1.7.0' // https://github.com/rharter/auto-value-parcel/issues/64
-
-
-    // Unit tests dependencies
-    testCompile libJUnit
-    testCompile libMockitoCore
-    testCompile libHamcrestCore
-    testCompile libHamcrestLibrary
-    testCompile libHamcrestIntegration
-    testCompile libRobolectric
-
-
-    // Instrumentation test dependencies
-    androidTestCompile libJUnit
-    androidTestCompile libMockitoCore
-    androidTestCompile libSupportAnnotations
-    androidTestCompile(libEspressoContrib) {
-        exclude group: 'com.android.support', module: 'appcompat'
-        exclude group: 'com.android.support', module: 'support-v4'
-        exclude group: 'com.android.support', module: 'recyclerview-v7'
-    }
-    androidTestCompile libEspressoCore
-    androidTestCompile libSupportTestRunner
-    androidTestCompile libSupportTestRules
-    androidTestCompile libDexmaker
-    androidTestCompile libDexmakerDx
-    androidTestCompile libDexmakerMockito
-}
-
-// Log out test results to console
-tasks.matching {it instanceof Test}.all {
-    testLogging.events = ["failed", "passed", "skipped"]
 }
