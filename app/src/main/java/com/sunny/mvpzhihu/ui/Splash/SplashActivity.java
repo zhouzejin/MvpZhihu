@@ -85,7 +85,7 @@ public class SplashActivity extends Activity {
     }
 
     private void getLaunchImage() {
-        mZhihuService.getLuanchImage(RESOLUTION)
+        mZhihuService.getLaunchImage(RESOLUTION)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Action1<LaunchImage>() {

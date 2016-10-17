@@ -40,7 +40,7 @@ public interface ZhihuService {
      * @return
      */
     @GET("start-image/{res}")
-    Observable<LaunchImage> getLuanchImage(@Path("res") String res);
+    Observable<LaunchImage> getLaunchImage(@Path("res") String res);
 
     /******** Helper class that sets up a new services *******/
     class Creator {
