@@ -1,5 +1,13 @@
 package com.sunny.mvpzhihu;
 
+import com.sunny.mvpzhihu.data.DataManager;
+import com.sunny.mvpzhihu.data.local.DatabaseHelper;
+import com.sunny.mvpzhihu.data.local.PreferencesHelper;
+import com.sunny.mvpzhihu.data.model.bean.Subject;
+import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
+import com.sunny.mvpzhihu.data.remote.RetrofitService;
+import com.sunny.mvpzhihu.test.common.TestDataFactory;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,13 +20,6 @@ import java.util.List;
 import rx.Observable;
 import rx.functions.Func1;
 import rx.observers.TestSubscriber;
-import com.sunny.mvpzhihu.data.DataManager;
-import com.sunny.mvpzhihu.data.local.DatabaseHelper;
-import com.sunny.mvpzhihu.data.local.PreferencesHelper;
-import com.sunny.mvpzhihu.data.model.bean.Subject;
-import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
-import com.sunny.mvpzhihu.data.remote.SubjectsService;
-import com.sunny.mvpzhihu.test.common.TestDataFactory;
 
 import static org.mockito.Matchers.anyListOf;
 import static org.mockito.Mockito.never;
@@ -38,13 +39,14 @@ public class DataManagerTest {
 
     @Mock DatabaseHelper mMockDatabaseHelper;
     @Mock PreferencesHelper mMockPreferencesHelper;
-    @Mock SubjectsService mMockSubjectsService;
+    @Mock
+    RetrofitService mMockRetrofitService;
     private DataManager mDataManager;
 
     @Before
     public void setUp() {
         mDataManager = new DataManager(
-                mMockSubjectsService,
+                mMockRetrofitService,
                 mMockPreferencesHelper,
                 mMockDatabaseHelper);
     }
@@ -71,13 +73,13 @@ public class DataManagerTest {
 
         mDataManager.syncSubjects().subscribe();
         // Verify right calls to helper methods
-        verify(mMockSubjectsService).getSubjects();
+        verify(mMockRetrofitService).getSubjects();
         verify(mMockDatabaseHelper).setSubjects(subjects);
     }
 
     @Test
     public void syncSubjectsDoesNotCallDatabaseWhenApiFails() {
-        when(mMockSubjectsService.getSubjects().map(new Func1<InTheatersEntity, List<Subject>>() {
+        when(mMockRetrofitService.getSubjects().map(new Func1<InTheatersEntity, List<Subject>>() {
             @Override
             public List<Subject> call(InTheatersEntity inTheatersEntity) {
                 return inTheatersEntity.subjects();
@@ -86,13 +88,13 @@ public class DataManagerTest {
 
         mDataManager.syncSubjects().subscribe(new TestSubscriber<Subject>());
         // Verify right calls to helper methods
-        verify(mMockSubjectsService).getSubjects();
+        verify(mMockRetrofitService).getSubjects();
         verify(mMockDatabaseHelper, never()).setSubjects(anyListOf(Subject.class));
     }
 
     private void stubSyncSubjectsHelperCalls(List<Subject> subjects) {
         // Stub calls to the subject service and database helper.
-        when(mMockSubjectsService.getSubjects().map(new Func1<InTheatersEntity, List<Subject>>() {
+        when(mMockRetrofitService.getSubjects().map(new Func1<InTheatersEntity, List<Subject>>() {
             @Override
             public List<Subject> call(InTheatersEntity inTheatersEntity) {
                 return inTheatersEntity.subjects();

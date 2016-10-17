@@ -3,7 +3,8 @@ package com.sunny.mvpzhihu.injection.module;
 import android.app.Application;
 import android.content.Context;
 
-import com.sunny.mvpzhihu.data.remote.SubjectsService;
+import com.sunny.mvpzhihu.data.remote.RetrofitService;
+import com.sunny.mvpzhihu.data.remote.ZhihuService;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 import com.sunny.mvpzhihu.utils.imageloader.GlideImageLoader;
 import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
@@ -38,8 +39,14 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    SubjectsService provideSubjectsService() {
-        return SubjectsService.Creator.newSubjectsService();
+    RetrofitService provideRetrofitService() {
+        return RetrofitService.Creator.newRetrofitService();
+    }
+
+    @Provides
+    @Singleton
+    ZhihuService provideZhihuService() {
+        return ZhihuService.Creator.newZhihuService(provideContext());
     }
 
     @Provides

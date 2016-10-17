@@ -6,6 +6,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sunny.mvpzhihu.R;
+import com.sunny.mvpzhihu.data.remote.ZhihuService;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,6 +26,9 @@ public class SplashActivity extends Activity {
     ImageView mIvSplash;
     @BindView(R.id.tv_form)
     TextView mTvForm;
+
+    @Inject
+    ZhihuService mZhihuService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

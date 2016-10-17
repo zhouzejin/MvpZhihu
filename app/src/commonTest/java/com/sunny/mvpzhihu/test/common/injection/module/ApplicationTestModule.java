@@ -3,13 +3,14 @@ package com.sunny.mvpzhihu.test.common.injection.module;
 import android.app.Application;
 import android.content.Context;
 
+import com.sunny.mvpzhihu.data.DataManager;
+import com.sunny.mvpzhihu.data.remote.RetrofitService;
+import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
+
 import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import com.sunny.mvpzhihu.data.DataManager;
-import com.sunny.mvpzhihu.data.remote.SubjectsService;
-import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 
 import static org.mockito.Mockito.mock;
 
@@ -47,8 +48,8 @@ public class ApplicationTestModule {
 
     @Provides
     @Singleton
-    SubjectsService provideSubjectsService() {
-        return mock(SubjectsService.class);
+    RetrofitService provideSubjectsService() {
+        return mock(RetrofitService.class);
     }
 
 }
