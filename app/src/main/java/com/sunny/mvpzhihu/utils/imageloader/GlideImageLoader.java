@@ -1,6 +1,7 @@
 package com.sunny.mvpzhihu.utils.imageloader;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
@@ -17,7 +18,7 @@ import com.sunny.mvpzhihu.utils.NetworkUtil;
 public class GlideImageLoader implements ImageLoader {
 
     @Override
-    public void displayImage(Context context, ImageView imageView, String imageUrl,
+    public void displayUrlImage(Context context, ImageView imageView, String imageUrl,
                              DisplayOption option) {
         int strategy = option.getWifiStrategy();
         if (strategy == LOAD_STRATEGY_ONLY_WIFI) {
@@ -33,6 +34,14 @@ public class GlideImageLoader implements ImageLoader {
             // 如果不是在wifi下才加载图片
             loadNormal(context, imageView, imageUrl, option);
         }
+    }
+
+    @Override
+    public void displayResImage(Context context, ImageView imageView, @DrawableRes int resId) {
+        Glide.with(context)
+                .load(resId)
+                .into(imageView);
+
     }
 
     /**

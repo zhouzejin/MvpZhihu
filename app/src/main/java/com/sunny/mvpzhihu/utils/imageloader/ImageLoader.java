@@ -1,6 +1,7 @@
 package com.sunny.mvpzhihu.utils.imageloader;
 
 import android.content.Context;
+import android.support.annotation.DrawableRes;
 import android.widget.ImageView;
 
 import com.sunny.mvpzhihu.R;
@@ -103,6 +104,15 @@ public interface ImageLoader {
      * @param imageUrl  图片资源的URL
      * @param option    显示参数设置
      */
-    void displayImage(Context context, ImageView imageView, String imageUrl, DisplayOption option);
+    void displayUrlImage(Context context, ImageView imageView, String imageUrl, DisplayOption option);
+
+    /**
+     * 显示图片
+     *
+     * @param context ImageView的Context
+     * @param imageView 显示图片的ImageView
+     * @param resId  图片资源的ID
+     */
+    void displayResImage(Context context, ImageView imageView, @DrawableRes int resId);
 
 }

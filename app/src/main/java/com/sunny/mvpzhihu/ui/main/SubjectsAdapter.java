@@ -8,6 +8,11 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.sunny.mvpzhihu.R;
+import com.sunny.mvpzhihu.data.model.bean.Subject;
+import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
+import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +20,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import com.sunny.mvpzhihu.R;
-import com.sunny.mvpzhihu.data.model.bean.Subject;
-import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
-import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
 
 public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.SubjectViewHolder> {
 
@@ -49,7 +50,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
     @Override
     public void onBindViewHolder(final SubjectViewHolder holder, int position) {
         Subject subject = mSubjects.get(position);
-        mImageLoader.displayImage(mContext, holder.imageView, subject.images().small(),
+        mImageLoader.displayUrlImage(mContext, holder.imageView, subject.images().small(),
                 new ImageLoader.DisplayOption.Builder().build());
         holder.titleTextView.setText(subject.title());
         holder.genresTextView.setText(subject.genres().toString());
