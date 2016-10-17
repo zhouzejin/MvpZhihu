@@ -63,12 +63,15 @@ public interface ZhihuService {
         }
 
         public static ZhihuService newZhihuService(@ApplicationContext final Context context) {
-            String cacheFileName = "RetrofitHttpCache";
-            long cacheSize = 1024 * 1024 * 100;
-            Cache cache = new Cache(new File(context.getCacheDir(), cacheFileName), cacheSize);
+            // 缓存文件设置
+            final String CACHE_FILE_NAME = "RetrofitHttpCache";
+            final long CACHE_SIZE = 1024 * 1024 * 100;
+            final Cache CACHE_FILE = new Cache(new File(context.getCacheDir(), CACHE_FILE_NAME),
+                    CACHE_SIZE);
 
+            // 设置HTTP缓存拦截器
             final int CACHE_TIME = 60 * 60 * 24 * 7;
-            Interceptor rewriteCacheControlInterceptor = new Interceptor() {
+            final Interceptor REWRITE_CACHE_CONTROL_INTERCEPTOR = new Interceptor() {
                 @Override
                 public Response intercept(Chain chain) throws IOException {
                     Request request = chain.request();
@@ -77,8 +80,8 @@ public interface ZhihuService {
                                 .cacheControl(CacheControl.FORCE_CACHE)
                                 .build();
                     }
-                    Response originalResponse = chain.proceed(request);
 
+                    Response originalResponse = chain.proceed(request);
                     if (NetworkUtil.isNetworkConnected(context)) {
                         String cacheControl = request.cacheControl().toString();
                         return originalResponse.newBuilder()
@@ -95,9 +98,11 @@ public interface ZhihuService {
                 }
             };
 
+            // REWRITE_CACHE_CONTROL_INTERCEPTOR拦截器需要同时设置networkInterceptors和interceptors
             OkHttpClient client = httpClientBuilder
-                    .cache(cache)
-                    .addNetworkInterceptor(rewriteCacheControlInterceptor)
+                    .cache(CACHE_FILE)
+                    .addNetworkInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
+                    .addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR)
                     .build();
 
             Retrofit retrofit = new Retrofit.Builder()
