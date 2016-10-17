@@ -23,6 +23,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.schedulers.Schedulers;
@@ -35,6 +36,8 @@ import rx.schedulers.Schedulers;
  */
 
 public class SplashActivity extends Activity {
+
+    private Unbinder unbinder;
 
     @BindView(R.id.iv_splash)
     ImageView mIvSplash;
@@ -66,7 +69,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_splash);
-        ButterKnife.bind(this);
+        unbinder = ButterKnife.bind(this);
         ZhiHuApplication.get(this).getComponent().inject(this);
     }
 
@@ -82,6 +85,7 @@ public class SplashActivity extends Activity {
         super.onDestroy();
 
         mHandler.removeCallbacksAndMessages(null);
+        unbinder.unbind();
     }
 
     private void getLaunchImage() {
