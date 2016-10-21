@@ -1,7 +1,5 @@
 package com.sunny.mvpzhihu.data.model.bean;
 
-import android.content.ContentValues;
-import android.database.Cursor;
 import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
@@ -12,14 +10,13 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.squareup.sqldelight.ColumnAdapter;
 import com.squareup.sqldelight.RowMapper;
-import com.sunny.sql.SubjectModel;
-
-import java.util.List;
-
 import com.sunny.mvpzhihu.data.model.pojo.Image;
 import com.sunny.mvpzhihu.data.model.pojo.Person;
 import com.sunny.mvpzhihu.data.model.pojo.Rating;
 import com.sunny.mvpzhihu.utils.factory.MyGsonTypeAdapterFactory;
+import com.sunny.sql.SubjectModel;
+
+import java.util.List;
 
 /**
  * Created by Zhou Zejin on 2016/9/21.
@@ -33,53 +30,55 @@ public abstract class Subject implements SubjectModel, Parcelable, Comparable<Su
             .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'")
             .create();
 
-    private static final ColumnAdapter RATING_ADAPTER = new ColumnAdapter<Rating>() {
+    private static final ColumnAdapter RATING_ADAPTER = new ColumnAdapter<Rating, String>() {
+        @NonNull
         @Override
-        public Rating map(Cursor cursor, int columnIndex) {
-            return gson.fromJson(cursor.getString(columnIndex), Rating.class);
+        public Rating decode(String databaseValue) {
+            return gson.fromJson(databaseValue, Rating.class);
         }
 
         @Override
-        public void marshal(ContentValues values, String key, Rating value) {
-            values.put(key, gson.toJson(value));
-        }
-    };
-
-    private static final ColumnAdapter GENRES_ADAPTER = new ColumnAdapter<List<String>>() {
-        @Override
-        public List<String> map(Cursor cursor, int columnIndex) {
-            return gson.fromJson(cursor.getString(columnIndex),
-                    new TypeToken<List<String>>() {}.getType());
-        }
-
-        @Override
-        public void marshal(ContentValues values, String key, List<String> value) {
-            values.put(key, gson.toJson(value));
+        public String encode(@NonNull Rating value) {
+            return gson.toJson(value);
         }
     };
 
-    private static final ColumnAdapter PERSONS_ADAPTER = new ColumnAdapter<List<Person>>() {
+    private static final ColumnAdapter GENRES_ADAPTER = new ColumnAdapter<List<String>, String>() {
+        @NonNull
         @Override
-        public List<Person> map(Cursor cursor, int columnIndex) {
-            return gson.fromJson(cursor.getString(columnIndex),
-                    new TypeToken<List<Person>>() {}.getType());
+        public List<String> decode(String databaseValue) {
+            return gson.fromJson(databaseValue, new TypeToken<List<String>>() {}.getType());
         }
 
         @Override
-        public void marshal(ContentValues values, String key, List<Person> value) {
-            values.put(key, gson.toJson(value));
+        public String encode(@NonNull List<String> value) {
+            return gson.toJson(value);
         }
     };
 
-    private static final ColumnAdapter IMAGE_ADAPTER = new ColumnAdapter<Image>() {
+    private static final ColumnAdapter PERSONS_ADAPTER = new ColumnAdapter<List<Person>, String>() {
+        @NonNull
         @Override
-        public Image map(Cursor cursor, int columnIndex) {
-            return gson.fromJson(cursor.getString(columnIndex), Image.class);
+        public List<Person> decode(String databaseValue) {
+            return gson.fromJson(databaseValue, new TypeToken<List<Person>>() {}.getType());
         }
 
         @Override
-        public void marshal(ContentValues values, String key, Image value) {
-            values.put(key, gson.toJson(value));
+        public String encode(@NonNull List<Person> value) {
+            return  gson.toJson(value);
+        }
+    };
+
+    private static final ColumnAdapter IMAGE_ADAPTER = new ColumnAdapter<Image, String>() {
+        @NonNull
+        @Override
+        public Image decode(String databaseValue) {
+            return gson.fromJson(databaseValue, Image.class);
+        }
+
+        @Override
+        public String encode(@NonNull Image value) {
+            return gson.toJson(value);
         }
     };
 
