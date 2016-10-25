@@ -1,4 +1,4 @@
-package com.sunny.mvpzhihu.ui.main;
+package com.sunny.mvpzhihu.ui.example;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,6 +10,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.sunny.mvpzhihu.R;
+import com.sunny.mvpzhihu.data.model.bean.Subject;
+import com.sunny.mvpzhihu.injection.module.ActivityModule;
+import com.sunny.mvpzhihu.injection.module.FragmentModule;
+import com.sunny.mvpzhihu.ui.base.BaseActivity;
+import com.sunny.mvpzhihu.utils.factory.DialogFactory;
+
 import java.util.Collections;
 import java.util.List;
 
@@ -18,12 +25,6 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import com.sunny.mvpzhihu.R;
-import com.sunny.mvpzhihu.data.model.bean.Subject;
-import com.sunny.mvpzhihu.injection.module.ActivityModule;
-import com.sunny.mvpzhihu.injection.module.FragmentModule;
-import com.sunny.mvpzhihu.ui.base.BaseActivity;
-import com.sunny.mvpzhihu.utils.factory.DialogFactory;
 
 public class MainFragment extends Fragment implements MainMvpView {
 

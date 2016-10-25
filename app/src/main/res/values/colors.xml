@@ -3,4 +3,6 @@
     <color name="primary">#F15D5B</color>
     <color name="primary_dark">#D04C48</color>
     <color name="accent">#FF4081</color>
+    <color name="window_background">#FFFEFEFE</color>
+    <color name="bottom_navigation_background">#FFF8F8F8</color>
 </resources>

@@ -1,4 +1,4 @@
-package com.sunny.mvpzhihu.ui.main;
+package com.sunny.mvpzhihu.ui.example;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
