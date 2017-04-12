@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.squareup.sqldelight'
-apply plugin: 'com.neenbedankt.android-apt'
 apply from: '../config/quality/quality.gradle'
 
 android {
@@ -161,9 +160,9 @@ dependencies {
 
     compile libDagger
     provided 'org.glassfish:javax.annotation:10.0-b28' // Required by Dagger2
-    apt libDaggerCompiler
-    testApt libDaggerCompiler
-    androidTestApt libDaggerCompiler
+    annotationProcessor libDaggerCompiler
+    testAnnotationProcessor libDaggerCompiler
+    androidTestAnnotationProcessor libDaggerCompiler
 
     compile libRxjava
     compile libRxandroid
@@ -178,14 +177,14 @@ dependencies {
     compile libGlide
 
     compile libButterknife
-    apt libButterknifeCompiler
+    annotationProcessor libButterknifeCompiler
 
     compile libTimber
 
     provided "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
-    apt "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
-    apt 'com.ryanharter.auto.value:auto-value-parcel:0.2.4-rc2'
+    annotationProcessor "com.google.auto.value:auto-value:$AUTO_VALUE_VERSION"
+    annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.4-rc2'
     provided "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
-    apt "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
-    apt 'com.squareup:javapoet:1.7.0' // https://github.com/rharter/auto-value-parcel/issues/64
+    annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
+    annotationProcessor 'com.squareup:javapoet:1.7.0' // https://github.com/rharter/auto-value-parcel/issues/64
 }
