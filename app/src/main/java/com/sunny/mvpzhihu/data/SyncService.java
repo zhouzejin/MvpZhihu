@@ -7,16 +7,18 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.IBinder;
 
-import javax.inject.Inject;
-
-import rx.Observer;
-import rx.Subscription;
-import rx.schedulers.Schedulers;
 import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
 import com.sunny.mvpzhihu.utils.AndroidComponentUtil;
 import com.sunny.mvpzhihu.utils.LogUtil;
 import com.sunny.mvpzhihu.utils.NetworkUtil;
+import com.sunny.mvpzhihu.utils.RxUtil;
+
+import javax.inject.Inject;
+
+import rx.Observer;
+import rx.Subscription;
+import rx.schedulers.Schedulers;
 
 public class SyncService extends Service {
 
@@ -48,7 +50,7 @@ public class SyncService extends Service {
             return START_NOT_STICKY;
         }
 
-        if (mSubscription != null && !mSubscription.isUnsubscribed()) mSubscription.unsubscribe();
+        RxUtil.unsubscribe(mSubscription);
         mSubscription = mDataManager.syncSubjects()
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<Subject>() {
