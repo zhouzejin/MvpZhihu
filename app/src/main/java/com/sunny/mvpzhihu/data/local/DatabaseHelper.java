@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.squareup.sqlbrite.BriteDatabase;
 import com.squareup.sqlbrite.SqlBrite;
+import com.sunny.mvpzhihu.data.model.bean.Subject;
 
 import java.util.Collection;
 import java.util.List;
@@ -15,7 +16,6 @@ import javax.inject.Singleton;
 import rx.Observable;
 import rx.Subscriber;
 import rx.functions.Func1;
-import com.sunny.mvpzhihu.data.model.bean.Subject;
 
 @Singleton
 public class DatabaseHelper {
@@ -56,7 +56,7 @@ public class DatabaseHelper {
 
     public Observable<List<Subject>> getSubjects() {
         return mDb.createQuery(Subject.TABLE_NAME,
-                Subject.SELECT_ALL)
+                Subject.FACTORY.select_all().statement)
                 .mapToList(new Func1<Cursor, Subject>() {
                     @Override
                     public Subject call(Cursor cursor) {
