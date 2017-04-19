@@ -103,7 +103,7 @@ android {
 }
 
 dependencies {
-    final SUPPORT_LIBRARY_VERSION = '25.0.0'
+    final SUPPORT_LIBRARY_VERSION = '25.3.1'
 
     final DAGGER_VERSION = '2.5'
 
@@ -171,7 +171,6 @@ dependencies {
     compile libAdapterRxjava
     compile libLoggingInterceptor
 
-    compile libSqlbrite
     compile(libSqlbrite) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
