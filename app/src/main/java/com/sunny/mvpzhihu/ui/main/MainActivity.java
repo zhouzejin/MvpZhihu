@@ -1,6 +1,7 @@
 package com.sunny.mvpzhihu.ui.main;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -35,7 +36,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
-
+        initBottomNavigation();
     }
 
     @Override
@@ -63,6 +64,37 @@ public class MainActivity extends BaseActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void initBottomNavigation() {
+        mBottomNavigation.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.item_answer:
+                                Toast.makeText(MainActivity.this, "日报", Toast.LENGTH_LONG).show();
+                                break;
+                            case R.id.item_article:
+                                Toast.makeText(MainActivity.this, "主题", Toast.LENGTH_LONG).show();
+                                break;
+                            case R.id.item_column:
+                                Toast.makeText(MainActivity.this, "专栏", Toast.LENGTH_LONG).show();
+                                break;
+                            case R.id.item_favorite:
+                                Toast.makeText(MainActivity.this, "文章", Toast.LENGTH_LONG).show();
+                                break;
+                        }
+                        return true;
+                    }
+                });
+        mBottomNavigation.setOnNavigationItemReselectedListener(
+                new BottomNavigationView.OnNavigationItemReselectedListener() {
+                    @Override
+                    public void onNavigationItemReselected(@NonNull MenuItem item) {
+                        // Do nothing!
+                    }
+                });
     }
 
 }
