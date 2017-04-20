@@ -17,6 +17,7 @@ import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.data.model.pojo.LaunchImage;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
 import com.sunny.mvpzhihu.ui.main.MainActivity;
+import com.sunny.mvpzhihu.utils.LogUtil;
 import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
 
 import javax.inject.Inject;
@@ -106,6 +107,8 @@ public class SplashActivity extends Activity {
                 }, new Action1<Throwable>() {
                     @Override
                     public void call(Throwable throwable) {
+                        LogUtil.w(throwable, "获取启动页面失败，使用默认启动图片。");
+
                         mImageLoader.displayResImage(SplashActivity.this, mIvSplash,
                                 R.drawable.splash_default);
                         mHandler.sendEmptyMessageDelayed(0, 1000);

@@ -64,7 +64,6 @@ public class SyncService extends Service {
                     public void onError(Throwable e) {
                         LogUtil.w(e, "Error syncing.");
                         stopSelf(startId);
-
                     }
 
                     @Override
