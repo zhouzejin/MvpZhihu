@@ -20,6 +20,8 @@ import com.sunny.mvpzhihu.ui.main.MainActivity;
 import com.sunny.mvpzhihu.utils.LogUtil;
 import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
 
+import java.lang.ref.WeakReference;
+
 import javax.inject.Inject;
 
 import butterknife.BindView;
@@ -54,16 +56,7 @@ public class SplashActivity extends Activity {
     private static final int ANIMATION_DURATION = 2000;
     private static final float SCALE_END = 1.13F;
 
-    private Handler mHandler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-
-            if (msg.what == 0) {
-                animateImage();
-            }
-        }
-    };
+    private final Handler mHandler = new MyHandler(this);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +78,8 @@ public class SplashActivity extends Activity {
     protected void onDestroy() {
         super.onDestroy();
 
+        // 当Activity finish后，handler对象还在Message中排队，还会处理消息，
+        // 不过，这时已经没必要对消息进行处理，应该取消掉Handler对象的Message和Runnable.
         mHandler.removeCallbacksAndMessages(null);
         unbinder.unbind();
     }
@@ -132,6 +127,30 @@ public class SplashActivity extends Activity {
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
+    }
+
+    // 使用静态内部类，避免直接引用OuterClass
+    private final static class MyHandler extends Handler {
+        // 使用弱引用，避免Handler阻止Activity被回收，造成内存泄露
+        private final WeakReference<SplashActivity> mActivityWeakReference;
+
+        MyHandler(SplashActivity activity) {
+            mActivityWeakReference = new WeakReference<>(activity);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if (mActivityWeakReference.get() == null) {
+                // 引用被回收
+                return;
+            }
+
+            if (msg.what == 0) {
+                mActivityWeakReference.get().animateImage();
+            }
+        }
     }
 
 }
