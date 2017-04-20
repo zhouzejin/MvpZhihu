@@ -1,5 +1,7 @@
 package com.sunny.mvpzhihu.ui.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -23,6 +25,14 @@ public class MainActivity extends BaseActivity {
     Toolbar mToolbar;
     @BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNavigation;
+
+    /**
+     * Return an Intent to start this Activity.
+     */
+    public static Intent getStartIntent(Context context) {
+        Intent intent = new Intent(context, MainActivity.class);
+        return intent;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
