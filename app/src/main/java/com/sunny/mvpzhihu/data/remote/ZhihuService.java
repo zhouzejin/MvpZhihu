@@ -5,7 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunny.mvpzhihu.BuildConfig;
-import com.sunny.mvpzhihu.data.model.pojo.LaunchImage;
+import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 import com.sunny.mvpzhihu.utils.NetworkUtil;
 import com.sunny.mvpzhihu.utils.factory.MyGsonTypeAdapterFactory;
@@ -30,7 +30,7 @@ import rx.Observable;
 
 public interface ZhihuService {
 
-    String ZHIHU_DAILY_URL = "http://news-at.zhihu.com/api/4/";
+    String ZHIHU_DAILY_URL = "http://news-at.zhihu.com/api/7/";
     int DEFAULT_TIMEOUT = 5;
 
     /**
@@ -39,8 +39,8 @@ public interface ZhihuService {
      * @param res
      * @return
      */
-    @GET("start-image/{res}")
-    Observable<LaunchImage> getLaunchImage(@Path("res") String res);
+    @GET("prefetch-launch-images/{res}")
+    Observable<PrefetchLaunchImagesEntity> getPrefetchLaunchImages(@Path("res") String res);
 
     /******** Helper class that sets up a new services *******/
     class Creator {

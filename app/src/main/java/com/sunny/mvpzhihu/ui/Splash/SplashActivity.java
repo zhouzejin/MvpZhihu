@@ -13,7 +13,8 @@ import android.widget.TextView;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ZhiHuApplication;
-import com.sunny.mvpzhihu.data.model.pojo.LaunchImage;
+import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
+import com.sunny.mvpzhihu.data.model.pojo.Creative;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
 import com.sunny.mvpzhihu.ui.main.MainActivity;
 import com.sunny.mvpzhihu.utils.LogUtil;
@@ -84,18 +85,20 @@ public class SplashActivity extends Activity {
     }
 
     private void getLaunchImage() {
-        mZhihuService.getLaunchImage(RESOLUTION)
+        mZhihuService.getPrefetchLaunchImages(RESOLUTION)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<LaunchImage>() {
+                .subscribe(new Action1<PrefetchLaunchImagesEntity>() {
                     @Override
-                    public void call(LaunchImage launchImage) {
+                    public void call(PrefetchLaunchImagesEntity prefetchLaunchImagesEntity) {
+                        Creative creative = prefetchLaunchImagesEntity.creatives().get(0);
+                        String text = "StartTime:" + creative.start_time();
                         mImageLoader.displayUrlImage(SplashActivity.this, mIvSplash,
-                                launchImage.img(),
+                                creative.url(),
                                 new ImageLoader.DisplayOption.Builder()
                                         .placeHolder(R.drawable.splash_default)
                                         .build());
-                        mTvForm.setText(launchImage.text());
+                        mTvForm.setText(text);
                         mHandler.sendEmptyMessageDelayed(0, 1000);
                     }
                 }, new Action1<Throwable>() {
