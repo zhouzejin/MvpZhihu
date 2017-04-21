@@ -5,6 +5,7 @@ import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -16,6 +17,10 @@ import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
 import com.sunny.mvpzhihu.data.model.pojo.Creative;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
+import com.sunny.mvpzhihu.injection.component.ConfigPersistentComponent;
+import com.sunny.mvpzhihu.injection.component.DaggerConfigPersistentComponent;
+import com.sunny.mvpzhihu.injection.module.ActivityModule;
+import com.sunny.mvpzhihu.injection.qualifier.ActivityContext;
 import com.sunny.mvpzhihu.ui.main.MainActivity;
 import com.sunny.mvpzhihu.utils.LogUtil;
 import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
@@ -37,7 +42,6 @@ import rx.schedulers.Schedulers;
  * <p>
  * Created by Zhou Zejin on 2016/10/14.
  */
-
 public class SplashActivity extends Activity {
 
     private Unbinder unbinder;
@@ -47,6 +51,9 @@ public class SplashActivity extends Activity {
     @BindView(R.id.tv_form)
     TextView mTvForm;
 
+    @Inject
+    @ActivityContext
+    Context mContext;
     @Inject
     ZhihuService mZhihuService;
     @Inject
@@ -64,7 +71,13 @@ public class SplashActivity extends Activity {
 
         setContentView(R.layout.activity_splash);
         unbinder = ButterKnife.bind(this);
-        ZhiHuApplication.get(this).getComponent().inject(this);
+
+        // Inject instance for activity
+        ConfigPersistentComponent configPersistentComponent = DaggerConfigPersistentComponent
+                .builder()
+                .applicationComponent(ZhiHuApplication.get(this).getComponent())
+                .build();
+        configPersistentComponent.activityComponent(new ActivityModule(this)).inject(this);
     }
 
     @Override
@@ -93,7 +106,7 @@ public class SplashActivity extends Activity {
                     public void call(PrefetchLaunchImagesEntity prefetchLaunchImagesEntity) {
                         Creative creative = prefetchLaunchImagesEntity.creatives().get(0);
                         String text = "StartTime:" + creative.start_time();
-                        mImageLoader.displayUrlImage(SplashActivity.this, mIvSplash,
+                        mImageLoader.displayUrlImage(mContext, mIvSplash,
                                 creative.url(),
                                 new ImageLoader.DisplayOption.Builder()
                                         .placeHolder(R.drawable.splash_default)
@@ -106,7 +119,7 @@ public class SplashActivity extends Activity {
                     public void call(Throwable throwable) {
                         LogUtil.w(throwable, "获取启动页面失败，使用默认启动图片。");
 
-                        mImageLoader.displayResImage(SplashActivity.this, mIvSplash,
+                        mImageLoader.displayResImage(mContext, mIvSplash,
                                 R.drawable.splash_default);
                         mHandler.sendEmptyMessageDelayed(0, 1000);
                     }
@@ -124,7 +137,7 @@ public class SplashActivity extends Activity {
         set.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                startActivity(MainActivity.getStartIntent(SplashActivity.this));
+                startActivity(MainActivity.getStartIntent(mContext));
                 finish();
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }

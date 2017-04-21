@@ -14,7 +14,7 @@ import dagger.Subcomponent;
  */
 @InFragment
 @Subcomponent(modules = {ActivityModule.class, FragmentModule.class})
-public interface MainComponent {
+public interface FragmentComponent {
 
     void inject(MainFragment mainFragment);
 

@@ -76,7 +76,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract void initToolBar();
 
     /**
-     * Create the MainComponent and reuses cached ConfigPersistentComponent if this is
+     * Create the ConfigPersistentComponent and reuses cached ConfigPersistentComponent if this is
      * being called after a configuration change.
      */
     private void createComponent(Bundle savedInstanceState) {

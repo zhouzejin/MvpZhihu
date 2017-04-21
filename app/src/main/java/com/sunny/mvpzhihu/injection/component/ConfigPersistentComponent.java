@@ -1,10 +1,11 @@
 package com.sunny.mvpzhihu.injection.component;
 
-import dagger.Component;
-import com.sunny.mvpzhihu.injection.scope.ConfigPersistent;
 import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.injection.module.FragmentModule;
+import com.sunny.mvpzhihu.injection.scope.ConfigPersistent;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
+
+import dagger.Component;
 
 /**
  * A dagger component that will live during the lifecycle of an Activity but it won't
@@ -17,6 +18,7 @@ import com.sunny.mvpzhihu.ui.base.BaseActivity;
 @Component(dependencies = ApplicationComponent.class)
 public interface ConfigPersistentComponent {
 
-    MainComponent mainComponent(ActivityModule activityModule, FragmentModule fragmentModule);
+    ActivityComponent activityComponent(ActivityModule activityModule);
+    FragmentComponent fragmentComponent(ActivityModule activityModule, FragmentModule fragmentModule);
 
 }
