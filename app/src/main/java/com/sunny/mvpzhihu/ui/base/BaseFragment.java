@@ -8,23 +8,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.sunny.mvpzhihu.injection.component.FragmentComponent;
+import com.sunny.mvpzhihu.injection.module.ActivityModule;
+import com.sunny.mvpzhihu.injection.module.FragmentModule;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * Created by Zhou Zejin on 2017/4/21.
- * <p>
- * Fragment基础类
+ * Abstract fragment that every other Fragment in this application must implement.
  */
-
 public abstract class BaseFragment extends Fragment {
 
     private View rootView;
     private Unbinder unbinder;
+    private FragmentComponent mFragmentComponent;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mFragmentComponent = ((BaseActivity) getActivity()).configPersistentComponent()
+                .fragmentComponent(new ActivityModule(getActivity()), new FragmentModule(this));
     }
 
     @Nullable
@@ -66,5 +76,9 @@ public abstract class BaseFragment extends Fragment {
      * @param savedInstanceState
      */
     public abstract void initViews(Bundle savedInstanceState);
+
+    public FragmentComponent fragmentComponent() {
+        return mFragmentComponent;
+    }
 
 }
