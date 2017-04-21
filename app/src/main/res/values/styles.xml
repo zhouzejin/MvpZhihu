@@ -1,18 +1,22 @@
 <resources>
 
-    <style name="ZhiHuTheme" parent="ZhiHuTheme.Base" />
+    <style name="ZhiHuTheme" parent="ZhiHuTheme.Base"/>
 
-    <style name="ZhiHuTheme.Base" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="ZhiHuTheme.Base" parent="ZhiHuTheme.NoActionBar">
         <item name="colorPrimary">@color/primary</item>
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/accent</item>
     </style>
 
-    <style name="ZhiHuTheme.NoActionBar" parent="ZhiHuTheme.Base">
+    <style name="ZhiHuTheme.NoActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowBackground">@color/window_background</item>
+    </style>
+
+    <style name="ZhiHuTheme.Fullscreen">
+        <item name="android:windowFullscreen">true</item>
     </style>
 
 </resources>

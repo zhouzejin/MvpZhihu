@@ -10,12 +10,12 @@
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/ZhiHuTheme.NoActionBar">
+        android:theme="@style/ZhiHuTheme">
 
         <!--启动界面-->
         <activity
             android:name=".ui.splash.SplashActivity"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+            android:theme="@style/ZhiHuTheme.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
