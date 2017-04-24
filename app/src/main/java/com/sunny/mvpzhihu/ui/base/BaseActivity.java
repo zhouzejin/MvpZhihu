@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.sunny.mvpzhihu.ZhiHuApplication;
+import com.sunny.mvpzhihu.injection.component.ActivityComponent;
 import com.sunny.mvpzhihu.injection.component.ConfigPersistentComponent;
 import com.sunny.mvpzhihu.injection.component.DaggerConfigPersistentComponent;
+import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.utils.LogUtil;
 
 import java.util.HashMap;
@@ -28,6 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private static Map<Long, ConfigPersistentComponent> sComponentsMap = new HashMap<>();
 
     private ConfigPersistentComponent mConfigPersistentComponent;
+    private ActivityComponent mActivityComponent;
     private long mActivityId;
     private Unbinder unbinder;
 
@@ -35,6 +38,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createComponent(savedInstanceState);
+        mActivityComponent = mConfigPersistentComponent.activityComponent(new ActivityModule(this));
         setContentView(getLayoutId());
         unbinder = ButterKnife.bind(this);
         initViews(savedInstanceState);
@@ -96,6 +100,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     public ConfigPersistentComponent configPersistentComponent() {
         return mConfigPersistentComponent;
+    }
+
+    public ActivityComponent activityComponent() {
+        return mActivityComponent;
     }
 
 }
