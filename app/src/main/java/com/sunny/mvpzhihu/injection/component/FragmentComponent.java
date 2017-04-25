@@ -5,6 +5,7 @@ import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.injection.module.FragmentModule;
 import com.sunny.mvpzhihu.injection.scope.InFragment;
 import com.sunny.mvpzhihu.ui.example.MainFragment;
+import com.sunny.mvpzhihu.ui.main.DailyFragment;
 
 import dagger.Subcomponent;
 
@@ -17,5 +18,7 @@ import dagger.Subcomponent;
 public interface FragmentComponent {
 
     void inject(MainFragment mainFragment);
+
+    void inject(DailyFragment dailyFragment);
 
 }

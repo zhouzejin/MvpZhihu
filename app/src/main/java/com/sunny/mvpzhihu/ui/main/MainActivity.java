@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,6 +14,10 @@ import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
+import com.sunny.mvpzhihu.utils.ActivityUtil;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.BindView;
 
@@ -21,10 +27,15 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity {
 
+    private static final String DAILY_TAG = "DAILY_FRAGMENT";
+
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.bottom_navigation)
     BottomNavigationView mBottomNavigation;
+
+    private Map<String, Fragment> mFragments;
+    private String mCurrentTag;
 
     /**
      * Return an Intent to start this Activity.
@@ -46,7 +57,13 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void initViews(Bundle savedInstanceState) {
+        addFragments();
         initBottomNavigation();
+
+        // 显示默认页面
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_content, mFragments.get(DAILY_TAG)).commit();
+        mCurrentTag = DAILY_TAG;
     }
 
     @Override
@@ -76,6 +93,11 @@ public class MainActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    private void addFragments() {
+        mFragments = new HashMap<>();
+        mFragments.put(DAILY_TAG, DailyFragment.newInstance());
+    }
+
     private void initBottomNavigation() {
         mBottomNavigation.setOnNavigationItemSelectedListener(
                 new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -83,7 +105,7 @@ public class MainActivity extends BaseActivity {
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.item_answer:
-                                Toast.makeText(MainActivity.this, "日报", Toast.LENGTH_LONG).show();
+                                showFragment(DAILY_TAG);
                                 break;
                             case R.id.item_article:
                                 Toast.makeText(MainActivity.this, "主题", Toast.LENGTH_LONG).show();
@@ -105,6 +127,17 @@ public class MainActivity extends BaseActivity {
                         // Do nothing!
                     }
                 });
+    }
+
+    private void showFragment(String tag) {
+        FragmentManager fm = getSupportFragmentManager();
+        Fragment hideFragment = mFragments.get(mCurrentTag);
+        Fragment showFragment = mFragments.get(tag);
+        if (!showFragment.isAdded()) {
+            ActivityUtil.addFragmentToActivity(fm, showFragment, R.id.frame_content, tag);
+        }
+        ActivityUtil.hideAndShowFragment(fm, hideFragment, showFragment);
+        mCurrentTag = tag;
     }
 
 }

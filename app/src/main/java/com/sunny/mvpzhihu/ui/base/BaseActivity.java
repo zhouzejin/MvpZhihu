@@ -32,7 +32,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     private ConfigPersistentComponent mConfigPersistentComponent;
     private ActivityComponent mActivityComponent;
     private long mActivityId;
-    private Unbinder unbinder;
+    private Unbinder mUnbinder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         createComponent(savedInstanceState);
         mActivityComponent = mConfigPersistentComponent.activityComponent(new ActivityModule(this));
         setContentView(getLayoutId());
-        unbinder = ButterKnife.bind(this);
+        mUnbinder = ButterKnife.bind(this);
         initViews(savedInstanceState);
         initToolBar();
     }
@@ -58,7 +58,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             sComponentsMap.remove(mActivityId);
         }
 
-        unbinder.unbind();
+        mUnbinder.unbind();
         super.onDestroy();
     }
 

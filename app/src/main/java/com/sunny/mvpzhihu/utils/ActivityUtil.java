@@ -29,12 +29,28 @@ public class ActivityUtil {
     /**
      * The {@code fragment} is added to the container view with id {@code frameId}. The operation is
      * performed by the {@code fragmentManager}.
-     *
      */
-    public static void addFragmentToActivity (@NonNull FragmentManager fragmentManager,
-                                              @NonNull Fragment fragment, int frameId) {
+    public static void addFragmentToActivity(@NonNull FragmentManager fragmentManager,
+                                             @NonNull Fragment fragment, int frameId) {
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.add(frameId, fragment);
+        transaction.commit();
+    }
+
+    public static void addFragmentToActivity(@NonNull FragmentManager fragmentManager,
+                                             @NonNull Fragment fragment,
+                                             int frameId, String tag) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.add(frameId, fragment, tag);
+        transaction.commit();
+    }
+
+    public static void hideAndShowFragment(@NonNull FragmentManager fragmentManager,
+                                           @NonNull Fragment hideFragment,
+                                           @NonNull Fragment showFragment) {
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.hide(hideFragment);
+        transaction.show(showFragment);
         transaction.commit();
     }
 
