@@ -33,6 +33,7 @@
         android:layout_gravity="bottom"
         android:background="@color/bottom_navigation_background"
         android:elevation="@dimen/bottom_navigation_elevation"
+        app:layout_behavior="com.sunny.mvpzhihu.widget.BottomNavigationBehavior"
         app:menu="@menu/menu_bottom_navigation"/>
 
 </android.support.design.widget.CoordinatorLayout>
