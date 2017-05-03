@@ -5,8 +5,12 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.squareup.sqlbrite.BriteDatabase;
 import com.squareup.sqlbrite.SqlBrite;
+import com.squareup.sqldelight.SqlDelightStatement;
+import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
+import com.sunny.mvpzhihu.ui.main.DailyModel;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -65,6 +69,34 @@ public class DatabaseHelper {
                         return Subject.MAPPER.map(cursor);
                     }
                 });
+    }
+
+    public Observable<? extends List<DailyModel>> setDailies(final List<Story> stories,
+                                                             final String date) {
+        return Observable.create(new Observable.OnSubscribe<List<DailyModel>>() {
+            @Override
+            public void call(Subscriber<? super List<DailyModel>> subscriber) {
+                if (subscriber.isUnsubscribed()) return;
+                List<DailyModel> dailyModels = new ArrayList<>();
+                BriteDatabase.Transaction transaction = mDb.newTransaction();
+                try {
+                    for (Story story : stories) {
+                        SqlDelightStatement query = Story.FACTORY.selectExistsById(story.id());
+                        Cursor cursor = mDb.query(query.statement, query.args);
+                        cursor.moveToFirst();
+                        Long result = Story.MAPPER.map(cursor);
+                        DailyModel dailyModel = new DailyModel(story, false, date);
+                        if (result != 0L) dailyModel.setRead(true);
+                        dailyModels.add(dailyModel);
+                    }
+                    transaction.markSuccessful();
+                    subscriber.onNext(dailyModels);
+                    subscriber.onCompleted();
+                } finally {
+                    transaction.end();
+                }
+            }
+        });
     }
 
 }

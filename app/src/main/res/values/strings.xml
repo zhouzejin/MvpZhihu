@@ -8,6 +8,8 @@
     <string name="navigation_column">专栏</string>
     <string name="navigation_favorite">文章</string>
 
+    <string name="today_hot_news">今日热闻</string>
+
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>
     <string name="dialog_error_title">Sorry</string>

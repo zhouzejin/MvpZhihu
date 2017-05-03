@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/tv_daily_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/daily_text_view_time_margin_bottom"
+        android:layout_marginLeft="@dimen/daily_card_view_margin"
+        android:layout_marginRight="@dimen/daily_card_view_margin"
+        android:layout_marginTop="@dimen/daily_text_view_time_margin_top"
+        android:gravity="center_vertical"
+        android:textColor="@color/text_color_normal"
+        android:textSize="@dimen/text_large_body"
+        tools:text="7月25日 星期五"/>
+
+    <include layout="@layout/item_daily"/>
+</LinearLayout>

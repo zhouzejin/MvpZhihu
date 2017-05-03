@@ -1,4 +1,4 @@
-package com.sunny.mvpzhihu.data.model.pojo;
+package com.sunny.mvpzhihu.data.model.bean;
 
 import android.os.Parcelable;
 
@@ -9,7 +9,7 @@ import com.google.gson.TypeAdapter;
 import java.util.List;
 
 /**
- * Created by Administrator on 2017/4/20.
+ * Created by Zhou zejin on 2017/4/20.
  */
 
 @AutoValue

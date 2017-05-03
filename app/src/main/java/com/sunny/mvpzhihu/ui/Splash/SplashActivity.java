@@ -14,9 +14,8 @@ import android.widget.TextView;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ZhiHuApplication;
-import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
-import com.sunny.mvpzhihu.data.model.pojo.Creative;
-import com.sunny.mvpzhihu.data.remote.ZhihuService;
+import com.sunny.mvpzhihu.data.DataManager;
+import com.sunny.mvpzhihu.data.model.bean.Creative;
 import com.sunny.mvpzhihu.injection.component.ConfigPersistentComponent;
 import com.sunny.mvpzhihu.injection.component.DaggerConfigPersistentComponent;
 import com.sunny.mvpzhihu.injection.module.ActivityModule;
@@ -55,7 +54,7 @@ public class SplashActivity extends Activity {
     @ActivityContext
     Context mContext;
     @Inject
-    ZhihuService mZhihuService;
+    DataManager mDataManager;
     @Inject
     ImageLoader mImageLoader;
 
@@ -98,19 +97,16 @@ public class SplashActivity extends Activity {
     }
 
     private void getLaunchImage() {
-        mZhihuService.getPrefetchLaunchImages(RESOLUTION)
+        mDataManager.getCreate(RESOLUTION)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<PrefetchLaunchImagesEntity>() {
+                .subscribe(new Action1<Creative>() {
                     @Override
-                    public void call(PrefetchLaunchImagesEntity prefetchLaunchImagesEntity) {
-                        Creative creative = prefetchLaunchImagesEntity.creatives().get(0);
+                    public void call(Creative creative) {
                         String text = "StartTime:" + creative.start_time();
-                        mImageLoader.displayUrlImage(mContext, mIvSplash,
-                                creative.url(),
+                        mImageLoader.displayUrlImage(mContext, mIvSplash, creative.url(),
                                 new ImageLoader.DisplayOption.Builder()
-                                        .placeHolder(R.drawable.splash_default)
-                                        .build());
+                                        .placeHolder(R.drawable.splash_default).build());
                         mTvForm.setText(text);
                         mHandler.sendEmptyMessageDelayed(0, 1000);
                     }

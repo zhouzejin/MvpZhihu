@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunny.mvpzhihu.BuildConfig;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
+import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 import com.sunny.mvpzhihu.utils.NetworkUtil;
 import com.sunny.mvpzhihu.utils.factory.MyGsonTypeAdapterFactory;
@@ -30,7 +31,7 @@ import rx.Observable;
 
 public interface ZhihuService {
 
-    String ZHIHU_DAILY_URL = "http://news-at.zhihu.com/api/7/";
+    String ZHIHU_DAILY_URL = "http://news-at.zhihu.com/api/";
     int DEFAULT_TIMEOUT = 5;
 
     /**
@@ -39,8 +40,16 @@ public interface ZhihuService {
      * @param res
      * @return
      */
-    @GET("prefetch-launch-images/{res}")
+    @GET("7/prefetch-launch-images/{res}")
     Observable<PrefetchLaunchImagesEntity> getPrefetchLaunchImages(@Path("res") String res);
+
+    /**
+     * 获取最新的日报数据
+     *
+     * @return
+     */
+    @GET("4/stories/latest")
+    Observable<StoriesLastEntity> getStoriesLast();
 
     /******** Helper class that sets up a new services *******/
     class Creator {

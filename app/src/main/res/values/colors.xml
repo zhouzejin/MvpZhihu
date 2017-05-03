@@ -5,4 +5,8 @@
     <color name="accent">#FF4081</color>
     <color name="window_background">#FFFEFEFE</color>
     <color name="bottom_navigation_background">#FFF8F8F8</color>
+    <color name="card_view_background">#FFFFFF</color>
+    <color name="text_color_normal">#555555</color>
+    <color name="text_color_read">#9E9E9E</color>
+    <color name="text_color_unread">#000000</color>
 </resources>

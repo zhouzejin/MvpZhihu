@@ -4,11 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import javax.inject.Inject;
-import javax.inject.Singleton;
-
+import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
+
+import javax.inject.Inject;
+import javax.inject.Singleton;
 
 @Singleton
 public class DbOpenHelper extends SQLiteOpenHelper {
@@ -33,6 +34,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         db.beginTransaction();
         try {
             db.execSQL(Subject.CREATE_TABLE);
+            db.execSQL(Story.CREATE_TABLE);
             //Add other tables here
             db.setTransactionSuccessful();
         } finally {
