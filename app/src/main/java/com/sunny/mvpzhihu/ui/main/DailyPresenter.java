@@ -81,4 +81,8 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                 });
     }
 
+    public void openDailyDetail(DailyModel model) {
+        getMvpView().showTaskDetail(model.getStory().title());
+    }
+
 }

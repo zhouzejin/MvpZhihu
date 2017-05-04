@@ -7,6 +7,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
@@ -78,7 +79,15 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         mRecyclerDaily.setHasFixedSize(true);
         mRecyclerDaily.setLayoutManager(mLinearLayoutManager);
         mRecyclerDaily.addOnScrollListener(mAutoLoadOnScrollListener);
+
+        mDailyAdapter.setItemListener(new DailyAdapter.DailyItemListener() {
+            @Override
+            public void onDailyClick(DailyModel model) {
+                mDailyPresenter.openDailyDetail(model);
+            }
+        });
         mRecyclerDaily.setAdapter(mDailyAdapter);
+
         mDailyPresenter.loadDailies(false);
     }
 
@@ -116,6 +125,11 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         mCircleProgressDaily.setVisibility(View.GONE);
         mCircleProgressDaily.stopSpinning();
         mRecyclerDaily.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showTaskDetail(String msg) {
+        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 
 }

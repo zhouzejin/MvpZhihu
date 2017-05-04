@@ -2,13 +2,13 @@ package com.sunny.mvpzhihu.ui.main;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
@@ -23,7 +23,6 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * The type Story adapter.
@@ -37,12 +36,18 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
     private final Context mContext;
     private final ImageLoader mImageLoader;
 
+    private DailyItemListener mItemListener;
+
     private List<DailyModel> mDailyModels = new ArrayList<>();
 
     @Inject
     public DailyAdapter(@FragmentContext Context context, ImageLoader imageLoader) {
         mContext = context;
         mImageLoader = imageLoader;
+    }
+
+    public void setItemListener(DailyItemListener itemListener) {
+        mItemListener = itemListener;
     }
 
     @Override
@@ -79,7 +84,14 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         }
     }
 
-    private void setDailyData(DailyViewHolder holder, DailyModel model) {
+    private void setDailyData(DailyViewHolder holder, final DailyModel model) {
+        holder.mCardViewDaily.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mItemListener != null) mItemListener.onDailyClick(model);
+            }
+        });
+
         holder.mTvDailyTitle.setText(model.getStory().title());
 
         List<String> images = model.getStory().images();
@@ -119,6 +131,8 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
 
     class DailyViewHolder extends RecyclerView.ViewHolder {
 
+        @BindView(R.id.card_view_daily)
+        CardView mCardViewDaily;
         @BindView(R.id.tv_daily_title)
         TextView mTvDailyTitle;
         @BindView(R.id.iv_daily_image)
@@ -129,11 +143,6 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         DailyViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
-        }
-
-        @OnClick(R.id.card_view_daily)
-        public void onViewClicked() {
-            Toast.makeText(mContext, "CardView Clicked!", Toast.LENGTH_LONG).show();
         }
     }
 
@@ -146,6 +155,11 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface DailyItemListener {
+
+        void onDailyClick(DailyModel dailyModel);
     }
 
 }
