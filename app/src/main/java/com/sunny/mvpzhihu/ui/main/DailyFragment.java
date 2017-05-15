@@ -2,6 +2,8 @@ package com.sunny.mvpzhihu.ui.main;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +16,7 @@ import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -43,6 +46,11 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
 
     private LinearLayoutManager mLinearLayoutManager;
     private AutoLoadOnScrollListener mAutoLoadOnScrollListener;
+
+    private final Handler mHandler = new MyHandler(this);
+
+    private static final int MSG_ID_START_REFRESH = 0;
+    private static final int MSG_ID_LOAD_OVER = 1;
 
     public DailyFragment() {
         // Requires empty public constructor
@@ -97,6 +105,14 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         });
         mRecyclerDaily.setAdapter(mDailyAdapter);
 
+        mSwipeRefreshDaily.setColorSchemeResources(R.color.primary);
+        mSwipeRefreshDaily.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                mHandler.sendEmptyMessageDelayed(MSG_ID_START_REFRESH, 1000);
+            }
+        });
+
         mDailyPresenter.loadDailies(false);
     }
 
@@ -104,6 +120,32 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     public void onDestroyView() {
         super.onDestroyView();
         mDailyPresenter.detachView();
+    }
+
+    // 使用静态内部类，避免直接引用OuterClass
+    private final static class MyHandler extends Handler {
+        // 使用弱引用，避免Handler阻止Fragment被回收，造成内存泄露
+        private final WeakReference<DailyFragment> mFragmentWeakReference;
+
+        MyHandler(DailyFragment fragment) {
+            mFragmentWeakReference = new WeakReference<>(fragment);
+        }
+
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+
+            if (mFragmentWeakReference.get() == null) {
+                // 引用被回收
+                return;
+            }
+
+            if (msg.what == MSG_ID_START_REFRESH) {
+                mFragmentWeakReference.get().mDailyPresenter.loadDailies(true);
+            } else if (msg.what == MSG_ID_LOAD_OVER) {
+                mFragmentWeakReference.get().hideProgress();
+            }
+        }
     }
 
     /*****
@@ -134,6 +176,7 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         mCircleProgressDaily.setVisibility(View.GONE);
         mCircleProgressDaily.stopSpinning();
         mRecyclerDaily.setVisibility(View.VISIBLE);
+        mSwipeRefreshDaily.setRefreshing(false);
     }
 
     @Override
@@ -144,6 +187,11 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     @Override
     public void setRecyclerScrollLoading(boolean isLoading) {
         mAutoLoadOnScrollListener.setLoading(isLoading);
+    }
+
+    @Override
+    public void loadDailiesOver() {
+        mHandler.sendEmptyMessageDelayed(MSG_ID_LOAD_OVER, 2000);
     }
 
 }

@@ -74,16 +74,16 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
 
                     @Override
                     public void onNext(List<DailyModel> dailyModels) {
-                        if (dailyModels.isEmpty()) {
-                            getMvpView().showDailiesEmpty();
-                        } else {
-                            getMvpView().hideProgress();
+                        getMvpView().showDailiesEmpty(); // 避免刷新时产生冗余数据
+                        if (!dailyModels.isEmpty()) {
                             getMvpView().showDailies(dailyModels);
 
                             mCurrentDate = dailyModels.get(dailyModels.size() - 1).getDate();
                             // 预加载前一天的数据
                             if (dailyModels.size() < SIZE_TO_LOAD_MORE)
                                 loadMoreDailies();
+
+                            getMvpView().loadDailiesOver();
                         }
                     }
                 });

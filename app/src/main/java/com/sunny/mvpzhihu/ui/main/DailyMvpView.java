@@ -22,4 +22,6 @@ public interface DailyMvpView extends MvpView {
 
     void setRecyclerScrollLoading(boolean isLoading);
 
+    void loadDailiesOver();
+
 }

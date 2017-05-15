@@ -58,6 +58,7 @@ public class SplashActivity extends Activity {
     @Inject
     ImageLoader mImageLoader;
 
+    private static final int MSG_ID_ANIMATE_IMAGE = 0;
     private static final String RESOLUTION = "1080*1776";
     private static final int ANIMATION_DURATION = 2000;
     private static final float SCALE_END = 1.13F;
@@ -108,7 +109,7 @@ public class SplashActivity extends Activity {
                                 new ImageLoader.DisplayOption.Builder()
                                         .placeHolder(R.drawable.splash_default).build());
                         mTvForm.setText(text);
-                        mHandler.sendEmptyMessageDelayed(0, 1000);
+                        mHandler.sendEmptyMessageDelayed(MSG_ID_ANIMATE_IMAGE, 1000);
                     }
                 }, new Action1<Throwable>() {
                     @Override
@@ -117,7 +118,7 @@ public class SplashActivity extends Activity {
 
                         mImageLoader.displayResImage(mContext, mIvSplash,
                                 R.drawable.splash_default);
-                        mHandler.sendEmptyMessageDelayed(0, 1000);
+                        mHandler.sendEmptyMessageDelayed(MSG_ID_ANIMATE_IMAGE, 1000);
                     }
                 });
     }
@@ -158,7 +159,7 @@ public class SplashActivity extends Activity {
                 return;
             }
 
-            if (msg.what == 0) {
+            if (msg.what == MSG_ID_ANIMATE_IMAGE) {
                 mActivityWeakReference.get().animateImage();
             }
         }
