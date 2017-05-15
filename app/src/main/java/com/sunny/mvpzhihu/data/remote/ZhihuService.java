@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunny.mvpzhihu.BuildConfig;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
+import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 import com.sunny.mvpzhihu.utils.NetworkUtil;
@@ -50,6 +51,15 @@ public interface ZhihuService {
      */
     @GET("4/stories/latest")
     Observable<StoriesLastEntity> getStoriesLast();
+
+    /**
+     * 根据日期获取对应的日报数据
+     *
+     * @param date
+     * @return
+     */
+    @GET("4/stories/before/{date}")
+    Observable<StoriesBeforeEntity> getStoriesBefore(@Path("date") String date);
 
     /******** Helper class that sets up a new services *******/
     class Creator {

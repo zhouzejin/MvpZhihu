@@ -132,4 +132,9 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void setRecyclerScrollLoading(boolean isLoading) {
+        mAutoLoadOnScrollListener.setLoading(isLoading);
+    }
+
 }

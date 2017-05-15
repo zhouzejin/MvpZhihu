@@ -20,4 +20,6 @@ public interface DailyMvpView extends MvpView {
 
     void showTaskDetail(String msg);
 
+    void setRecyclerScrollLoading(boolean isLoading);
+
 }

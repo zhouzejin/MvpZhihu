@@ -24,9 +24,12 @@ import rx.schedulers.Schedulers;
 @ConfigPersistent
 public class DailyPresenter extends BasePresenter<DailyMvpView> {
 
+    private static final int SIZE_TO_LOAD_MORE = 8;
+
     private final DataManager mDataManager;
 
     private Subscription mSubscription;
+    private String mCurrentDate;
 
     @Inject
     public DailyPresenter(DataManager dataManager) {
@@ -76,7 +79,40 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                         } else {
                             getMvpView().hideProgress();
                             getMvpView().showDailies(dailyModels);
+
+                            mCurrentDate = dailyModels.get(dailyModels.size() - 1).getDate();
+                            // 预加载前一天的数据
+                            if (dailyModels.size() < SIZE_TO_LOAD_MORE)
+                                loadMoreDailies(mCurrentDate);
                         }
+                    }
+                });
+    }
+
+    private void loadMoreDailies(String currentDate) {
+        checkViewAttached();
+        RxUtil.unsubscribe(mSubscription);
+
+        mSubscription = mDataManager.getMoreDailies(currentDate)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<List<DailyModel>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtil.e(e, "加载更多Daily数据出错。");
+                        getMvpView().setRecyclerScrollLoading(false);
+                    }
+
+                    @Override
+                    public void onNext(List<DailyModel> dailyModels) {
+                        getMvpView().setRecyclerScrollLoading(false);
+                        getMvpView().showDailies(dailyModels);
+                        mCurrentDate = dailyModels.get(dailyModels.size() - 1).getDate();
                     }
                 });
     }

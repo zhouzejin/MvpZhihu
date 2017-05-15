@@ -7,6 +7,7 @@ import com.sunny.mvpzhihu.data.model.bean.Subject;
 import com.sunny.mvpzhihu.data.model.bean.TopStory;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
+import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.remote.RetrofitService;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
@@ -73,6 +74,18 @@ public class DataManager {
                             StoriesLastEntity storiesLastEntity) {
                         return mDatabaseHelper.setDailies(storiesLastEntity.stories(),
                                 storiesLastEntity.date());
+                    }
+                });
+    }
+
+    public Observable<List<DailyModel>> getMoreDailies(String date) {
+        return mZhihuService.getStoriesBefore(date)
+                .concatMap(new Func1<StoriesBeforeEntity, Observable<? extends List<DailyModel>>>() {
+                    @Override
+                    public Observable<? extends List<DailyModel>> call(
+                            StoriesBeforeEntity storiesBeforeEntity) {
+                        return mDatabaseHelper.setDailies(storiesBeforeEntity.stories(),
+                                storiesBeforeEntity.date());
                     }
                 });
     }
