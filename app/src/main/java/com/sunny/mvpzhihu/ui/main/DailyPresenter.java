@@ -83,17 +83,17 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                             mCurrentDate = dailyModels.get(dailyModels.size() - 1).getDate();
                             // 预加载前一天的数据
                             if (dailyModels.size() < SIZE_TO_LOAD_MORE)
-                                loadMoreDailies(mCurrentDate);
+                                loadMoreDailies();
                         }
                     }
                 });
     }
 
-    private void loadMoreDailies(String currentDate) {
+    public void loadMoreDailies() {
         checkViewAttached();
         RxUtil.unsubscribe(mSubscription);
 
-        mSubscription = mDataManager.getMoreDailies(currentDate)
+        mSubscription = mDataManager.getMoreDailies(mCurrentDate)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Subscriber<List<DailyModel>>() {

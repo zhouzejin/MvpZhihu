@@ -73,7 +73,16 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         mAutoLoadOnScrollListener = new AutoLoadOnScrollListener(mLinearLayoutManager) {
             @Override
             public void onLoadMore(int currentPage) {
+                mDailyPresenter.loadMoreDailies();
+            }
 
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                // 根据Scroll位置决定是否Enable刷新控件
+                boolean isEnabled =
+                        mLinearLayoutManager.findFirstCompletelyVisibleItemPosition() == 0;
+                mSwipeRefreshDaily.setEnabled(isEnabled);
             }
         };
         mRecyclerDaily.setHasFixedSize(true);
