@@ -11,7 +11,7 @@ import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.remote.RetrofitService;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
-import com.sunny.mvpzhihu.ui.main.DailyModel;
+import com.sunny.mvpzhihu.ui.main.daily.DailyModel;
 
 import java.util.List;
 

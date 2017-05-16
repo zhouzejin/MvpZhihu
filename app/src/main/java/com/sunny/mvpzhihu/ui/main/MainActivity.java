@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
+import com.sunny.mvpzhihu.ui.main.daily.DailyFragment;
 import com.sunny.mvpzhihu.utils.ActivityUtil;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.sunny.mvpzhihu.ui.main;
+package com.sunny.mvpzhihu.ui.main.daily;
 
 import com.sunny.mvpzhihu.data.model.bean.Story;
 

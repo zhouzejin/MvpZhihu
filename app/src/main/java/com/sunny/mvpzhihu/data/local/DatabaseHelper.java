@@ -8,7 +8,7 @@ import com.squareup.sqlbrite.SqlBrite;
 import com.squareup.sqldelight.SqlDelightStatement;
 import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
-import com.sunny.mvpzhihu.ui.main.DailyModel;
+import com.sunny.mvpzhihu.ui.main.daily.DailyModel;
 
 import java.util.ArrayList;
 import java.util.Collection;

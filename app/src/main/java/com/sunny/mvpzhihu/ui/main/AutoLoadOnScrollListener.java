@@ -14,7 +14,7 @@ public abstract class AutoLoadOnScrollListener extends RecyclerView.OnScrollList
     private boolean mIsLoading = false;
     private int mCurrentPage = 1;
 
-    AutoLoadOnScrollListener(LinearLayoutManager linearLayoutManager) {
+    public AutoLoadOnScrollListener(LinearLayoutManager linearLayoutManager) {
         mLinearLayoutManager = linearLayoutManager;
     }
 

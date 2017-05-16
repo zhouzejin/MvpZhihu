@@ -1,4 +1,4 @@
-package com.sunny.mvpzhihu.widget;
+package com.sunny.mvpzhihu.widget.behavior;
 
 import android.content.Context;
 import android.os.Parcelable;

@@ -1,4 +1,4 @@
-package com.sunny.mvpzhihu.ui.main;
+package com.sunny.mvpzhihu.ui.main.daily;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
+import com.sunny.mvpzhihu.ui.main.AutoLoadOnScrollListener;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 
 import java.lang.ref.WeakReference;
