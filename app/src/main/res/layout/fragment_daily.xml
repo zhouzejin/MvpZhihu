@@ -22,7 +22,7 @@
             android:layout_width="@dimen/circle_progress_view_default_size"
             android:layout_height="@dimen/circle_progress_view_default_size"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="@dimen/circle_progress_view_top_margin"
+            android:layout_marginTop="@dimen/circle_progress_view_margin_top"
             app:matProg_barColor="?attr/colorPrimary"
             app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
     </FrameLayout>

@@ -16,6 +16,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Interpolator;
 
+/**
+ * @param <V>
+ * @see <a href="Bottom Navigation Behavior">https://medium.com/@nullthemall/bottom-navigation-behavior-388b9b206667</a>
+ */
 public final class BottomNavigationBehavior<V extends View> extends VerticalScrollingBehavior<V> {
 
     private static final Interpolator INTERPOLATOR = new LinearOutSlowInInterpolator();

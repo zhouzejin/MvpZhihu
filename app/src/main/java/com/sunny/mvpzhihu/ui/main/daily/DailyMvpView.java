@@ -1,5 +1,6 @@
 package com.sunny.mvpzhihu.ui.main.daily;
 
+import com.sunny.mvpzhihu.data.model.bean.TopStory;
 import com.sunny.mvpzhihu.ui.base.MvpView;
 
 import java.util.List;
@@ -13,6 +14,10 @@ public interface DailyMvpView extends MvpView {
     void showDailies(List<DailyModel> dailyModels);
 
     void showDailiesEmpty();
+
+    void showTopDailies(List<TopStory> topStories);
+
+    void showTopDailiesEmpty();
 
     void showProgress();
 

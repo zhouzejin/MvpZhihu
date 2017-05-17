@@ -1,6 +1,7 @@
 package com.sunny.mvpzhihu.ui.main.daily;
 
 import com.sunny.mvpzhihu.data.DataManager;
+import com.sunny.mvpzhihu.data.model.bean.TopStory;
 import com.sunny.mvpzhihu.injection.scope.ConfigPersistent;
 import com.sunny.mvpzhihu.ui.base.BasePresenter;
 import com.sunny.mvpzhihu.utils.LogUtil;
@@ -75,6 +76,7 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                     @Override
                     public void onNext(List<DailyModel> dailyModels) {
                         getMvpView().showDailiesEmpty(); // 避免刷新时产生冗余数据
+                        loadTopDailies();
                         if (!dailyModels.isEmpty()) {
                             getMvpView().showDailies(dailyModels);
 
@@ -82,8 +84,6 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                             // 预加载前一天的数据
                             if (dailyModels.size() < SIZE_TO_LOAD_MORE)
                                 loadMoreDailies();
-
-                            getMvpView().loadDailiesOver();
                         }
                     }
                 });
@@ -113,6 +113,35 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                         getMvpView().setRecyclerScrollLoading(false);
                         getMvpView().showDailies(dailyModels);
                         mCurrentDate = dailyModels.get(dailyModels.size() - 1).getDate();
+                    }
+                });
+    }
+
+    private void loadTopDailies() {
+        checkViewAttached();
+        RxUtil.unsubscribe(mSubscription);
+
+        mSubscription = mDataManager.getTopDailies()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Subscriber<List<TopStory>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        LogUtil.e(e, "加载TopDaily数据出错。");
+                        getMvpView().hideProgress();
+                    }
+
+                    @Override
+                    public void onNext(List<TopStory> topStories) {
+                        getMvpView().showTopDailiesEmpty(); // 避免刷新时产生冗余数据
+                        if (!topStories.isEmpty())
+                            getMvpView().showTopDailies(topStories);
+                        getMvpView().loadDailiesOver();
                     }
                 });
     }

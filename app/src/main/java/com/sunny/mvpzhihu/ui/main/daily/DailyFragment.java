@@ -8,14 +8,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
+import com.sunny.mvpzhihu.data.model.bean.TopStory;
 import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
+import com.sunny.mvpzhihu.ui.base.HeaderAndFooterWrappedAdapter;
 import com.sunny.mvpzhihu.ui.main.AutoLoadOnScrollListener;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
+import com.sunny.mvpzhihu.widget.bannerviewpager.BannerViewPager;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -37,13 +41,17 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     @BindView(R.id.swipe_refresh_daily)
     SwipeRefreshLayout mSwipeRefreshDaily;
 
+    BannerViewPager mBannerViewPagerTopDaily;
+
+    @Inject
+    @FragmentContext
+    Context mContext;
     @Inject
     DailyPresenter mDailyPresenter;
     @Inject
     DailyAdapter mDailyAdapter;
     @Inject
-    @FragmentContext
-    Context mContext;
+    TopDailyPagerAdapter mTopDailyPagerAdapter;
 
     private LinearLayoutManager mLinearLayoutManager;
     private AutoLoadOnScrollListener mAutoLoadOnScrollListener;
@@ -77,7 +85,13 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     @Override
     public void initViews(Bundle savedInstanceState) {
         mDailyPresenter.attachView(this);
+        initRecyclerView();
+        initAdapter();
+        initSwipeRefreshLayout();
+        mDailyPresenter.loadDailies(false);
+    }
 
+    private void initRecyclerView() {
         mLinearLayoutManager = new LinearLayoutManager(mContext);
         mAutoLoadOnScrollListener = new AutoLoadOnScrollListener(mLinearLayoutManager) {
             @Override
@@ -97,15 +111,26 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         mRecyclerDaily.setHasFixedSize(true);
         mRecyclerDaily.setLayoutManager(mLinearLayoutManager);
         mRecyclerDaily.addOnScrollListener(mAutoLoadOnScrollListener);
+    }
 
+    private void initAdapter() {
         mDailyAdapter.setItemListener(new DailyAdapter.DailyItemListener() {
             @Override
             public void onDailyClick(DailyModel model) {
                 mDailyPresenter.openDailyDetail(model);
             }
         });
-        mRecyclerDaily.setAdapter(mDailyAdapter);
+        HeaderAndFooterWrappedAdapter wrappedAdapter = new HeaderAndFooterWrappedAdapter(mDailyAdapter);
 
+        View header = LayoutInflater.from(mContext).inflate(R.layout.layout_header_daily, mRecyclerDaily, false);
+        mBannerViewPagerTopDaily = (BannerViewPager) header.findViewById(R.id.banner_view_pager_top_daily);
+        mBannerViewPagerTopDaily.setAdapter(mTopDailyPagerAdapter);
+
+        wrappedAdapter.addHeaderView(header);
+        mRecyclerDaily.setAdapter(wrappedAdapter);
+    }
+
+    private void initSwipeRefreshLayout() {
         mSwipeRefreshDaily.setColorSchemeResources(R.color.primary);
         mSwipeRefreshDaily.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -113,8 +138,6 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
                 mHandler.sendEmptyMessageDelayed(MSG_ID_START_REFRESH, 1000);
             }
         });
-
-        mDailyPresenter.loadDailies(false);
     }
 
     @Override
@@ -163,6 +186,18 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     public void showDailiesEmpty() {
         mDailyAdapter.clearData();
         mDailyAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showTopDailies(List<TopStory> topStories) {
+        mTopDailyPagerAdapter.addData(topStories);
+        mTopDailyPagerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void showTopDailiesEmpty() {
+        mTopDailyPagerAdapter.clearData();
+        mTopDailyPagerAdapter.notifyDataSetChanged();
     }
 
     @Override
