@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
@@ -139,6 +140,21 @@ public class MainActivity extends BaseActivity {
         }
         ActivityUtil.hideAndShowFragment(fm, hideFragment, showFragment);
         mCurrentTag = tag;
+    }
+
+    public void setOnClickToolbar(final ClickToolbar clickToolbar) {
+        if (clickToolbar == null) return;
+        mToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickToolbar.onClickToolbar();
+            }
+        });
+    }
+
+    public interface ClickToolbar {
+
+        void onClickToolbar();
     }
 
 }

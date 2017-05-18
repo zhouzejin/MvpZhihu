@@ -1,5 +1,6 @@
 package com.sunny.mvpzhihu.ui.main.daily;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
@@ -18,6 +19,7 @@ import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
 import com.sunny.mvpzhihu.ui.base.HeaderAndFooterWrappedAdapter;
 import com.sunny.mvpzhihu.ui.main.AutoLoadOnScrollListener;
+import com.sunny.mvpzhihu.ui.main.MainActivity;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 import com.sunny.mvpzhihu.widget.bannerviewpager.BannerViewPager;
 
@@ -43,6 +45,8 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
 
     BannerViewPager mBannerViewPagerTopDaily;
 
+    @Inject
+    Activity mActivity;
     @Inject
     @FragmentContext
     Context mContext;
@@ -111,6 +115,14 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         mRecyclerDaily.setHasFixedSize(true);
         mRecyclerDaily.setLayoutManager(mLinearLayoutManager);
         mRecyclerDaily.addOnScrollListener(mAutoLoadOnScrollListener);
+
+        ((MainActivity)mActivity).setOnClickToolbar(new MainActivity.ClickToolbar() {
+            @Override
+            public void onClickToolbar() {
+                // 滑到顶部
+                mRecyclerDaily.smoothScrollToPosition(0);
+            }
+        });
     }
 
     private void initAdapter() {
