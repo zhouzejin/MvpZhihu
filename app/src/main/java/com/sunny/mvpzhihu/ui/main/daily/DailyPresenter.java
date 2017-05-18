@@ -16,6 +16,7 @@ import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
+import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
@@ -53,7 +54,6 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
     public void loadDailies(final boolean isSwipeRefresh) {
         checkViewAttached();
         RxUtil.unsubscribe(mSubscription);
-
         mSubscription = mDataManager.getLastStories()
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -103,7 +103,6 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
     public void loadMoreDailies() {
         checkViewAttached();
         RxUtil.unsubscribe(mSubscription);
-
         mSubscription = mDataManager.getMoreDailies(mCurrentDate)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
@@ -128,8 +127,28 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                 });
     }
 
-    public void openDailyDetail(DailyModel model) {
-        getMvpView().showTaskDetail(model.getStory().title());
+    public void openDailyDetail(final DailyModel model) {
+        if (!model.getRead()) {
+            model.setRead(true);
+
+            checkViewAttached();
+            RxUtil.unsubscribe(mSubscription);
+            mDataManager.saveStory(model.getStory())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(new Action1<Long>() {
+                        @Override
+                        public void call(Long aLong) {
+
+                        }
+                    }, new Action1<Throwable>() {
+                        @Override
+                        public void call(Throwable throwable) {
+                            LogUtil.e(throwable, "Story插入失败，Title-" + model.getStory().title());
+                        }
+                    });
+        }
+        getMvpView().showDailyDetail(model);
     }
 
 }

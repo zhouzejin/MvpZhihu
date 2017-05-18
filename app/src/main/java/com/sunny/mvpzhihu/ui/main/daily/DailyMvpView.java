@@ -23,7 +23,7 @@ public interface DailyMvpView extends MvpView {
 
     void hideProgress();
 
-    void showTaskDetail(String msg);
+    void showDailyDetail(DailyModel dailyModel);
 
     void setRecyclerScrollLoading(boolean isLoading);
 

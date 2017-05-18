@@ -3,6 +3,7 @@ package com.sunny.mvpzhihu.data;
 import com.sunny.mvpzhihu.data.local.DatabaseHelper;
 import com.sunny.mvpzhihu.data.local.PreferencesHelper;
 import com.sunny.mvpzhihu.data.model.bean.Creative;
+import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
@@ -83,6 +84,10 @@ public class DataManager {
                                 storiesBeforeEntity.date());
                     }
                 });
+    }
+
+    public Observable<Long> saveStory(Story story) {
+        return mDatabaseHelper.insertStory(story);
     }
 
 }

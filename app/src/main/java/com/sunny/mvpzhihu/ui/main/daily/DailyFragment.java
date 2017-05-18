@@ -11,7 +11,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.data.model.bean.TopStory;
@@ -228,8 +227,8 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     }
 
     @Override
-    public void showTaskDetail(String msg) {
-        Toast.makeText(mContext, msg, Toast.LENGTH_SHORT).show();
+    public void showDailyDetail(DailyModel dailyModel) {
+        mDailyAdapter.notifyDataSetChanged();
     }
 
     @Override

@@ -98,4 +98,27 @@ public class DatabaseHelper {
         });
     }
 
+    public Observable<Long> insertStory(final Story story) {
+        return Observable.create(new Observable.OnSubscribe<Long>() {
+            @Override
+            public void call(Subscriber<? super Long> subscriber) {
+                Long result = mDb.insert(Story.TABLE_NAME,
+                        Story.FACTORY.marshal(story).asContentValues(),
+                        SQLiteDatabase.CONFLICT_REPLACE);
+                if (result < 0) {
+                    subscriber.onError(new InsertDataException());
+                } else {
+                    subscriber.onNext(result);
+                    subscriber.onCompleted();
+                }
+            }
+        });
+    }
+
+    public static class InsertDataException extends RuntimeException {
+        public InsertDataException() {
+            super("Insert Data Exception.");
+        }
+    }
+
 }
