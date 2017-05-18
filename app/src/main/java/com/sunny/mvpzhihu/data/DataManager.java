@@ -4,7 +4,6 @@ import com.sunny.mvpzhihu.data.local.DatabaseHelper;
 import com.sunny.mvpzhihu.data.local.PreferencesHelper;
 import com.sunny.mvpzhihu.data.model.bean.Creative;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
-import com.sunny.mvpzhihu.data.model.bean.TopStory;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
@@ -66,16 +65,12 @@ public class DataManager {
                 });
     }
 
-    public Observable<List<DailyModel>> getDailies() {
-        return mZhihuService.getStoriesLast()
-                .concatMap(new Func1<StoriesLastEntity, Observable<? extends List<DailyModel>>>() {
-                    @Override
-                    public Observable<? extends List<DailyModel>> call(
-                            StoriesLastEntity storiesLastEntity) {
-                        return mDatabaseHelper.setDailies(storiesLastEntity.stories(),
-                                storiesLastEntity.date());
-                    }
-                });
+    public Observable<StoriesLastEntity> getLastStories() {
+        return mZhihuService.getStoriesLast();
+    }
+
+    public Observable<List<DailyModel>> getDailies(StoriesLastEntity entity) {
+        return mDatabaseHelper.setDailies(entity.stories(), entity.date());
     }
 
     public Observable<List<DailyModel>> getMoreDailies(String date) {
@@ -86,16 +81,6 @@ public class DataManager {
                             StoriesBeforeEntity storiesBeforeEntity) {
                         return mDatabaseHelper.setDailies(storiesBeforeEntity.stories(),
                                 storiesBeforeEntity.date());
-                    }
-                });
-    }
-
-    public Observable<List<TopStory>> getTopDailies() {
-        return mZhihuService.getStoriesLast()
-                .map(new Func1<StoriesLastEntity, List<TopStory>>() {
-                    @Override
-                    public List<TopStory> call(StoriesLastEntity storiesLastEntity) {
-                        return storiesLastEntity.top_stories();
                     }
                 });
     }

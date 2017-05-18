@@ -71,8 +71,7 @@ public class DatabaseHelper {
                 });
     }
 
-    public Observable<? extends List<DailyModel>> setDailies(final List<Story> stories,
-                                                             final String date) {
+    public Observable<List<DailyModel>> setDailies(final List<Story> stories, final String date) {
         return Observable.create(new Observable.OnSubscribe<List<DailyModel>>() {
             @Override
             public void call(Subscriber<? super List<DailyModel>> subscriber) {
