@@ -7,33 +7,40 @@
     <dimen name="app_bar_elevation">5dp</dimen>
     <dimen name="bottom_navigation_elevation">8dp</dimen>
 
-    <!-- Splash Activity -->
-    <dimen name="splash_text_view_margin_bottom">10dp</dimen>
-
     <!-- CircleProgressView -->
     <dimen name="circle_progress_view_default_size">56dp</dimen>
     <dimen name="circle_progress_view_margin_top">206dp</dimen>
     <dimen name="circle_progress_view_default_border_width">4dp</dimen>
 
-    <!-- Daily Fragment -->
+    <!-- Splash -->
+    <dimen name="splash_text_view_margin_bottom">10dp</dimen>
+
+    <!-- Daily -->
     <dimen name="daily_card_view_height">100dp</dimen>
     <dimen name="daily_card_view_margin">10dp</dimen>
     <dimen name="daily_card_view_corner_radius">2dp</dimen>
     <dimen name="daily_card_view_elevation">4dp</dimen>
     <dimen name="daily_relative_layout_padding">10dp</dimen>
-    <dimen name="daily_text_view_title_margin_right">10dp</dimen>
-    <dimen name="daily_text_view_title_line_space">2dp</dimen>
-    <dimen name="daily_text_view_title_max_width">230dp</dimen>
-    <dimen name="daily_text_view_title_padding">2dp</dimen>
-    <dimen name="daily_image_view_image_width">80dp</dimen>
-    <dimen name="daily_image_view_image_height">80dp</dimen>
-    <dimen name="daily_text_view_time_margin_bottom">8dp</dimen>
-    <dimen name="daily_text_view_time_margin_top">16dp</dimen>
-    <dimen name="daily_header_layout_height">206dp</dimen>
-    <dimen name="daily_header_layout_top_height">128dp</dimen>
-    <dimen name="daily_header_layout_bottom_height">78dp</dimen>
-    <dimen name="top_daily_text_view_title_margin">20dp</dimen>
-    <dimen name="top_daily_text_view_title_margin_bottom">50dp</dimen>
+    <dimen name="daily_title_margin_right">10dp</dimen>
+    <dimen name="daily_title_line_space">2dp</dimen>
+    <dimen name="daily_title_max_width">230dp</dimen>
+    <dimen name="daily_title_padding">2dp</dimen>
+    <dimen name="daily_image_width">80dp</dimen>
+    <dimen name="daily_image_height">80dp</dimen>
+    <dimen name="daily_time_margin_bottom">8dp</dimen>
+    <dimen name="daily_time_margin_top">16dp</dimen>
+    <dimen name="daily_header_height">206dp</dimen>
+    <dimen name="daily_header_top_height">128dp</dimen>
+    <dimen name="daily_header_bottom_height">78dp</dimen>
+    <dimen name="top_daily_title_margin">20dp</dimen>
+    <dimen name="top_daily_title_margin_bottom">50dp</dimen>
+
+    <!-- Daily Detail -->
+    <dimen name="daily_detail_image_height">256dp</dimen>
+    <dimen name="daily_detail_title_margin_bottom">15dp</dimen>
+    <dimen name="daily_detail_title_padding">16dp</dimen>
+    <dimen name="daily_detail_source_margin_bottom">5dp</dimen>
+    <dimen name="daily_detail_source_padding">5dp</dimen>
 
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
@@ -42,5 +49,6 @@
     <dimen name="text_large_body">18sp</dimen>
     <dimen name="text_body">16sp</dimen>
     <dimen name="text_small_body">14sp</dimen>
+    <dimen name="text_mini_body">12sp</dimen>
 
 </resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sunny.mvpzhihu">
+          package="com.sunny.mvpzhihu">
 
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:name=".ZhiHuApplication"
@@ -12,35 +12,40 @@
         android:label="@string/app_name"
         android:theme="@style/ZhiHuTheme">
 
-        <!--启动界面-->
+        <!-- 启动界面 -->
         <activity
             android:name=".ui.splash.SplashActivity"
             android:theme="@style/ZhiHuTheme.Fullscreen">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.MAIN"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
-        <!--主界面-->
+        <!-- 主界面 -->
         <activity
             android:name=".ui.main.MainActivity"
-            android:label="@string/app_name"
             android:launchMode="singleTop"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"/>
+
+        <!-- 日报详情界面 -->
+        <activity
+            android:name=".ui.dailydetail.DailyDetailActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/ZhiHuTheme.TransparentStatusBar"/>
 
         <activity
             android:name=".ui.example.MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name"/>
 
-        <service android:name=".data.SyncService" />
+        <service android:name=".data.SyncService"/>
 
         <receiver
             android:name=".data.SyncService$SyncOnConnectionAvailable"
             android:enabled="false">
             <intent-filter>
-                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
             </intent-filter>
         </receiver>
 

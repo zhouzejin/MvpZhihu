@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
-             android:layout_height="@dimen/daily_header_layout_height">
+             android:layout_height="@dimen/daily_header_height">
 
     <ImageView
         android:id="@+id/iv_top_daily_image"
@@ -15,9 +15,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|center"
-        android:layout_marginBottom="@dimen/top_daily_text_view_title_margin_bottom"
-        android:layout_marginLeft="@dimen/top_daily_text_view_title_margin"
-        android:layout_marginRight="@dimen/top_daily_text_view_title_margin"
+        android:layout_marginBottom="@dimen/top_daily_title_margin_bottom"
+        android:layout_marginLeft="@dimen/top_daily_title_margin"
+        android:layout_marginRight="@dimen/top_daily_title_margin"
         android:ellipsize="end"
         android:maxLines="1"
         android:shadowColor="@color/text_color_shadow"

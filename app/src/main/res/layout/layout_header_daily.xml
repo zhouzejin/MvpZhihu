@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
              android:layout_width="match_parent"
-             android:layout_height="@dimen/daily_header_layout_height">
+             android:layout_height="@dimen/daily_header_height">
 
     <com.sunny.mvpzhihu.widget.bannerviewpager.BannerViewPager
         android:id="@+id/banner_view_pager_top_daily"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/daily_header_layout_height"
+        android:layout_height="@dimen/daily_header_height"
         android:overScrollMode="never"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/daily_header_layout_top_height"
+        android:layout_height="@dimen/daily_header_top_height"
         android:layout_gravity="top"
         android:background="@drawable/shape_rectangle_shadow"/>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/daily_header_layout_bottom_height"
+        android:layout_height="@dimen/daily_header_bottom_height"
         android:layout_gravity="bottom"
         android:background="@drawable/shape_rectangle_shadow_reserve"/>
 </FrameLayout>

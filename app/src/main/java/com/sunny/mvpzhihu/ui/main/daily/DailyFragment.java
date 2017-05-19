@@ -17,6 +17,7 @@ import com.sunny.mvpzhihu.data.model.bean.TopStory;
 import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
 import com.sunny.mvpzhihu.ui.base.HeaderAndFooterWrappedAdapter;
+import com.sunny.mvpzhihu.ui.dailydetail.DailyDetailActivity;
 import com.sunny.mvpzhihu.ui.main.AutoLoadOnScrollListener;
 import com.sunny.mvpzhihu.ui.main.MainActivity;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
@@ -115,7 +116,7 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
         mRecyclerDaily.setLayoutManager(mLinearLayoutManager);
         mRecyclerDaily.addOnScrollListener(mAutoLoadOnScrollListener);
 
-        ((MainActivity)mActivity).setOnClickToolbar(new MainActivity.ClickToolbar() {
+        ((MainActivity) mActivity).setOnClickToolbar(new MainActivity.ClickToolbar() {
             @Override
             public void onClickToolbar() {
                 // 滑到顶部
@@ -229,6 +230,7 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     @Override
     public void showDailyDetail(DailyModel dailyModel) {
         mDailyAdapter.notifyDataSetChanged();
+        startActivity(DailyDetailActivity.getStartIntent(mContext));
     }
 
     @Override
