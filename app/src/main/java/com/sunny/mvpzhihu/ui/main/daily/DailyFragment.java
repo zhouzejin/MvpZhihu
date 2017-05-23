@@ -22,6 +22,7 @@ import com.sunny.mvpzhihu.ui.main.AutoLoadOnScrollListener;
 import com.sunny.mvpzhihu.ui.main.MainActivity;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 import com.sunny.mvpzhihu.widget.bannerviewpager.BannerViewPager;
+import com.sunny.mvpzhihu.widget.bannerviewpager.OnPageClickListener;
 
 import java.lang.ref.WeakReference;
 import java.util.List;
@@ -136,6 +137,13 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
 
         View header = LayoutInflater.from(mContext).inflate(R.layout.layout_header_daily, mRecyclerDaily, false);
         mBannerViewPagerTopDaily = (BannerViewPager) header.findViewById(R.id.banner_view_pager_top_daily);
+        mTopDailyPagerAdapter.setOnPageClickListener(new OnPageClickListener() {
+            @Override
+            public void onPageClick(View view, int position) {
+                TopStory topStory = mTopDailyPagerAdapter.getItemData(position);
+                showDailyDetail(topStory.id());
+            }
+        });
         mBannerViewPagerTopDaily.setAdapter(mTopDailyPagerAdapter);
 
         wrappedAdapter.addHeaderView(header);
@@ -228,9 +236,9 @@ public class DailyFragment extends BaseFragment implements DailyMvpView {
     }
 
     @Override
-    public void showDailyDetail(DailyModel dailyModel) {
+    public void showDailyDetail(int dailyId) {
         mDailyAdapter.notifyDataSetChanged();
-        startActivity(DailyDetailActivity.getStartIntent(mContext));
+        startActivity(DailyDetailActivity.getStartIntent(mContext, dailyId));
     }
 
     @Override

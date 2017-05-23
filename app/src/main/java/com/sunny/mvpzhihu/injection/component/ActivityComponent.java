@@ -3,6 +3,7 @@ package com.sunny.mvpzhihu.injection.component;
 import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.injection.scope.InActivity;
+import com.sunny.mvpzhihu.ui.dailydetail.DailyDetailActivity;
 import com.sunny.mvpzhihu.ui.splash.SplashActivity;
 
 import dagger.Subcomponent;
@@ -16,5 +17,7 @@ import dagger.Subcomponent;
 public interface ActivityComponent {
 
     void inject(SplashActivity splashActivity);
+
+    void inject(DailyDetailActivity dailyDetailActivity);
 
 }

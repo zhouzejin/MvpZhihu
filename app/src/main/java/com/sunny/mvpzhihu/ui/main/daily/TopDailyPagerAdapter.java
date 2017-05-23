@@ -83,4 +83,10 @@ public class TopDailyPagerAdapter extends ViewPagerAdapter {
         mTopStories.clear();
     }
 
+    public TopStory getItemData(int position) {
+        if (position < 0 || position > mTopStories.size() - 1)
+            throw new RuntimeException("参数错误！");
+        return mTopStories.get(position);
+    }
+
 }

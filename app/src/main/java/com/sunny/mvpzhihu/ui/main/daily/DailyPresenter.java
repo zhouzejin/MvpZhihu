@@ -148,7 +148,7 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
                         }
                     });
         }
-        getMvpView().showDailyDetail(model);
+        getMvpView().showDailyDetail(model.getStory().id());
     }
 
 }

@@ -2,6 +2,10 @@
     <string name="app_name">知乎日报</string>
 
     <string name="action_more">更多选项</string>
+    <string name="action_share">分享</string>
+    <string name="action_favorite">喜欢</string>
+    <string name="action_comment">评论</string>
+    <string name="action_praise">点赞</string>
 
     <string name="navigation_answer">日报</string>
     <string name="navigation_article">主题</string>

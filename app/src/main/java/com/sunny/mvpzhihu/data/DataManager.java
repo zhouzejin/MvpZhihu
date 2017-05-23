@@ -9,6 +9,7 @@ import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
+import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
 import com.sunny.mvpzhihu.data.remote.RetrofitService;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
 import com.sunny.mvpzhihu.ui.main.daily.DailyModel;
@@ -88,6 +89,10 @@ public class DataManager {
 
     public Observable<Long> saveStory(Story story) {
         return mDatabaseHelper.insertStory(story);
+    }
+
+    public Observable<StoryEntity> getDailyDetail(int dailyId) {
+        return mZhihuService.getStory(dailyId);
     }
 
 }
