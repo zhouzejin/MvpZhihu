@@ -9,6 +9,7 @@ import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
+import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 import com.sunny.mvpzhihu.utils.NetworkUtil;
 import com.sunny.mvpzhihu.utils.factory.MyGsonTypeAdapterFactory;
@@ -70,6 +71,9 @@ public interface ZhihuService {
      */
     @GET("4/story/{id}")
     Observable<StoryEntity> getStory(@Path("id") int id);
+
+    @GET("4/story-extra/{id}")
+    Observable<StoryExtraEntity> getStoryExtra(@Path("id") int id);
 
     /******** Helper class that sets up a new services *******/
     class Creator {

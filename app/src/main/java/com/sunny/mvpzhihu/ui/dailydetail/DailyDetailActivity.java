@@ -14,6 +14,7 @@ import android.widget.TextView;
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.data.DataManager;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
+import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ActivityContext;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
 import com.sunny.mvpzhihu.utils.HtmlUtil;
@@ -27,6 +28,7 @@ import butterknife.BindView;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action0;
+import rx.functions.Action1;
 import rx.schedulers.Schedulers;
 
 /**
@@ -47,6 +49,9 @@ public class DailyDetailActivity extends BaseActivity {
     WebView mWebViewDetail;
     @BindView(R.id.circle_progress_detail)
     CircleProgressView mCircleProgressDetail;
+
+    MenuItem mMenuComment;
+    MenuItem mMenuPraise;
 
     @Inject
     @ActivityContext
@@ -74,12 +79,6 @@ public class DailyDetailActivity extends BaseActivity {
     }
 
     @Override
-    public void initViews(Bundle savedInstanceState) {
-        activityComponent().inject(this);
-        loadDailyDetail(getIntent().getIntExtra(EXTRA_DAILY_ID, -1));
-    }
-
-    @Override
     public void initToolBar() {
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_back);
@@ -93,8 +92,31 @@ public class DailyDetailActivity extends BaseActivity {
     }
 
     @Override
+    public void initViews(Bundle savedInstanceState) {
+        activityComponent().inject(this);
+
+        int dailyId = getIntent().getIntExtra(EXTRA_DAILY_ID, -1);
+        loadDailyDetail(dailyId);
+        loadDailyExtra(dailyId);
+    }
+
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_daily_detail, menu);
+        mMenuComment = menu.findItem(R.id.action_comment);
+        mMenuPraise = menu.findItem(R.id.action_praise);
+        mMenuComment.getActionView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(mMenuComment);
+            }
+        });
+        mMenuPraise.getActionView().setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onOptionsItemSelected(mMenuComment);
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -133,6 +155,18 @@ public class DailyDetailActivity extends BaseActivity {
                 });
     }
 
+    private void loadDailyExtra(int dailyId) {
+        mDataManager.getDailyExtra(dailyId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Action1<StoryExtraEntity>() {
+                    @Override
+                    public void call(StoryExtraEntity storyExtraEntity) {
+                        showDailyExtra(storyExtraEntity);
+                    }
+                });
+    }
+
     private void showProgress() {
         mCircleProgressDetail.setVisibility(View.VISIBLE);
         mCircleProgressDetail.spin();
@@ -152,6 +186,13 @@ public class DailyDetailActivity extends BaseActivity {
         String htmlData = HtmlUtil.createHtmlData(story.body(),
                 HtmlUtil.createCssTag(story.css()), HtmlUtil.createJsTag(story.js()));
         mWebViewDetail.loadData(htmlData, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
+    }
+
+    private void showDailyExtra(StoryExtraEntity storyExtra) {
+        TextView tvComment = (TextView) mMenuComment.getActionView();
+        TextView tvPraise = (TextView) mMenuPraise.getActionView();
+        tvComment.setText(String.valueOf(storyExtra.comments()));
+        tvPraise.setText(String.valueOf(storyExtra.popularity()));
     }
 
 }

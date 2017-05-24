@@ -41,8 +41,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         mActivityComponent = mConfigPersistentComponent.activityComponent(new ActivityModule(this));
         setContentView(getLayoutId());
         mUnbinder = ButterKnife.bind(this);
-        initViews(savedInstanceState);
         initToolBar();
+        initViews(savedInstanceState);
     }
 
     @Override
@@ -69,15 +69,15 @@ public abstract class BaseActivity extends AppCompatActivity {
     public abstract int getLayoutId();
 
     /**
+     * 初始化ToolBar
+     */
+    public abstract void initToolBar();
+
+    /**
      * 初始化View
      * @param savedInstanceState
      */
     public abstract void initViews(Bundle savedInstanceState);
-
-    /**
-     * 初始化ToolBar
-     */
-    public abstract void initToolBar();
 
     /**
      * Create the ConfigPersistentComponent and reuses cached ConfigPersistentComponent if this is

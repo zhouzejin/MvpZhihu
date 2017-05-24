@@ -17,15 +17,15 @@
 
     <item
         android:id="@+id/action_comment"
-        android:icon="@drawable/ic_action_comment"
         android:orderInCategory="3"
         android:title="@string/action_comment"
+        app:actionLayout="@layout/menu_item_comment"
         app:showAsAction="always"/>
 
     <item
         android:id="@+id/action_praise"
-        android:icon="@drawable/ic_action_praise"
         android:orderInCategory="4"
         android:title="@string/action_praise"
+        app:actionLayout="@layout/menu_item_praise"
         app:showAsAction="always"/>
 </menu>

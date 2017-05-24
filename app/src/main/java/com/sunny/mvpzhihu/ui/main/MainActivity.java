@@ -58,6 +58,12 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
+    public void initToolBar() {
+        mToolbar.setTitle(R.string.app_name);
+        setSupportActionBar(mToolbar);
+    }
+
+    @Override
     public void initViews(Bundle savedInstanceState) {
         addFragments();
         initBottomNavigation();
@@ -66,12 +72,6 @@ public class MainActivity extends BaseActivity {
         getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_content, mFragments.get(DAILY_TAG)).commit();
         mCurrentTag = DAILY_TAG;
-    }
-
-    @Override
-    public void initToolBar() {
-        mToolbar.setTitle(R.string.app_name);
-        setSupportActionBar(mToolbar);
     }
 
     @Override
