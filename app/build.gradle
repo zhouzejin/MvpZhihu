@@ -189,4 +189,6 @@ dependencies {
     annotationProcessor "com.ryanharter.auto.value:auto-value-gson:$AUTO_VALUE_GSON_VERSION"
     annotationProcessor 'com.squareup:javapoet:1.7.0'
     // https://github.com/rharter/auto-value-parcel/issues/64
+
+    compile project(path: ':SwipeBackLayout')
 }

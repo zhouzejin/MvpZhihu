@@ -3,6 +3,7 @@ package com.sunny.mvpzhihu.ui.dailydetail;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -94,6 +95,8 @@ public class DailyDetailActivity extends BaseActivity {
     @Override
     public void initViews(Bundle savedInstanceState) {
         activityComponent().inject(this);
+        setSwipeBackEnable(true);
+        showSwipeBackHint();
 
         int dailyId = getIntent().getIntExtra(EXTRA_DAILY_ID, -1);
         loadDailyDetail(dailyId);
@@ -165,6 +168,13 @@ public class DailyDetailActivity extends BaseActivity {
                         showDailyExtra(storyExtraEntity);
                     }
                 });
+    }
+
+    private void showSwipeBackHint() {
+        if (mDataManager.isShowSwipeBackHint()) {
+            mDataManager.setIsShowSwipeBasckHint(false);
+            Snackbar.make(mToolbar, R.string.swipe_back_hint, Snackbar.LENGTH_LONG).show();
+        }
     }
 
     private void showProgress() {

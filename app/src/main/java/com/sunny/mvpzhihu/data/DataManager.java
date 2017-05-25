@@ -100,4 +100,12 @@ public class DataManager {
         return mZhihuService.getStoryExtra(dailyId);
     }
 
+    public void setIsShowSwipeBasckHint(boolean value) {
+        mPreferencesHelper.putBoolean(PreferencesHelper.IS_SHOW_SWIPE_BACK_HINT, value);
+    }
+
+    public boolean isShowSwipeBackHint() {
+        return mPreferencesHelper.getBoolean(PreferencesHelper.IS_SHOW_SWIPE_BACK_HINT, true);
+    }
+
 }

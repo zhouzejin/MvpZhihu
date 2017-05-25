@@ -1,7 +1,6 @@
 package com.sunny.mvpzhihu.ui.base;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.injection.component.ActivityComponent;
@@ -9,6 +8,7 @@ import com.sunny.mvpzhihu.injection.component.ConfigPersistentComponent;
 import com.sunny.mvpzhihu.injection.component.DaggerConfigPersistentComponent;
 import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.utils.LogUtil;
+import com.sunny.swipebacklayout.app.SwipeBackActivity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,7 +22,7 @@ import butterknife.Unbinder;
  * creation of Dagger components and makes sure that instances of ConfigPersistentComponent survive
  * across configuration changes.
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SwipeBackActivity {
 
     private static final String KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID";
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
@@ -41,6 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mActivityComponent = mConfigPersistentComponent.activityComponent(new ActivityModule(this));
         setContentView(getLayoutId());
         mUnbinder = ButterKnife.bind(this);
+        setSwipeBackEnable(false);
         initToolBar();
         initViews(savedInstanceState);
     }
