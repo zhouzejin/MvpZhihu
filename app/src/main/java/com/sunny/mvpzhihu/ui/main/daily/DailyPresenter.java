@@ -133,7 +133,7 @@ public class DailyPresenter extends BasePresenter<DailyMvpView> {
 
             checkViewAttached();
             RxUtil.unsubscribe(mSubscription);
-            mDataManager.saveStory(model.getStory())
+            mSubscription = mDataManager.saveStory(model.getStory())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new Action1<Long>() {

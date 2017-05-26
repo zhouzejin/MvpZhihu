@@ -6,7 +6,7 @@ import com.sunny.mvpzhihu.ui.base.MvpView;
 import java.util.List;
 
 /**
- * The interface Story mvp view.
+ * The interface Daily mvp view.
  * Created by Zhou Zejin on 2017/4/24.
  */
 public interface DailyMvpView extends MvpView {

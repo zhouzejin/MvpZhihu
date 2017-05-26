@@ -13,30 +13,23 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.sunny.mvpzhihu.R;
-import com.sunny.mvpzhihu.data.DataManager;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ActivityContext;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
 import com.sunny.mvpzhihu.utils.HtmlUtil;
-import com.sunny.mvpzhihu.utils.LogUtil;
 import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action0;
-import rx.functions.Action1;
-import rx.schedulers.Schedulers;
 
 /**
  * The type Daily detail activity.
  * Created by Zhou Zejin on 2017/5/18.
  */
-public class DailyDetailActivity extends BaseActivity {
+public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpView {
 
     @BindView(R.id.iv_image)
     ImageView mIvImage;
@@ -58,7 +51,7 @@ public class DailyDetailActivity extends BaseActivity {
     @ActivityContext
     Context mContext;
     @Inject
-    DataManager mDataManager;
+    DailyDetailPresenter mDailyDetailPresenter;
     @Inject
     ImageLoader mImageLoader;
 
@@ -93,14 +86,21 @@ public class DailyDetailActivity extends BaseActivity {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDailyDetailPresenter.detachView();
+    }
+
+    @Override
     public void initViews(Bundle savedInstanceState) {
         activityComponent().inject(this);
         setSwipeBackEnable(true);
-        showSwipeBackHint();
+        mDailyDetailPresenter.attachView(this);
 
+        showSwipeBackHint();
         int dailyId = getIntent().getIntExtra(EXTRA_DAILY_ID, -1);
-        loadDailyDetail(dailyId);
-        loadDailyExtra(dailyId);
+        mDailyDetailPresenter.loadDailyDetail(dailyId);
+        mDailyDetailPresenter.loadDailyExtra(dailyId);
     }
 
     @Override
@@ -128,66 +128,24 @@ public class DailyDetailActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void loadDailyDetail(int dailyId) {
-        mDataManager.getDailyDetail(dailyId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe(new Action0() {
-                    @Override
-                    public void call() {
-                        showProgress();
-                    }
-                })
-                .subscribe(new Subscriber<StoryEntity>() {
-                    @Override
-                    public void onCompleted() {
+    /*****
+     * MVP View methods implementation
+     *****/
 
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-                        LogUtil.e(e, "加载Daily Detail数据出错。");
-                        hideProgress();
-                    }
-
-                    @Override
-                    public void onNext(StoryEntity storyEntity) {
-                        hideProgress();
-                        showDailyDetail(storyEntity);
-                    }
-                });
-    }
-
-    private void loadDailyExtra(int dailyId) {
-        mDataManager.getDailyExtra(dailyId)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Action1<StoryExtraEntity>() {
-                    @Override
-                    public void call(StoryExtraEntity storyExtraEntity) {
-                        showDailyExtra(storyExtraEntity);
-                    }
-                });
-    }
-
-    private void showSwipeBackHint() {
-        if (mDataManager.isShowSwipeBackHint()) {
-            mDataManager.setIsShowSwipeBasckHint(false);
-            Snackbar.make(mToolbar, R.string.swipe_back_hint, Snackbar.LENGTH_LONG).show();
-        }
-    }
-
-    private void showProgress() {
+    @Override
+    public void showProgress() {
         mCircleProgressDetail.setVisibility(View.VISIBLE);
         mCircleProgressDetail.spin();
     }
 
-    private void hideProgress() {
+    @Override
+    public void hideProgress() {
         mCircleProgressDetail.setVisibility(View.INVISIBLE);
         mCircleProgressDetail.stopSpinning();
     }
 
-    private void showDailyDetail(StoryEntity story) {
+    @Override
+    public void showDailyDetail(StoryEntity story) {
         ImageLoader.DisplayOption option = new ImageLoader.DisplayOption.Builder()
                 .placeHolder(R.drawable.image_default).build();
         mImageLoader.displayUrlImage(mContext, mIvImage, story.image(), option);
@@ -198,11 +156,19 @@ public class DailyDetailActivity extends BaseActivity {
         mWebViewDetail.loadData(htmlData, HtmlUtil.MIME_TYPE, HtmlUtil.ENCODING);
     }
 
-    private void showDailyExtra(StoryExtraEntity storyExtra) {
+    @Override
+    public void showDailyExtra(StoryExtraEntity storyExtra) {
         TextView tvComment = (TextView) mMenuComment.getActionView();
         TextView tvPraise = (TextView) mMenuPraise.getActionView();
         tvComment.setText(String.valueOf(storyExtra.comments()));
         tvPraise.setText(String.valueOf(storyExtra.popularity()));
+    }
+
+    @Override
+    public void showSwipeBackHint() {
+        if (mDailyDetailPresenter.getIsShowSwipeBackHint()) {
+            Snackbar.make(mToolbar, R.string.swipe_back_hint, Snackbar.LENGTH_LONG).show();
+        }
     }
 
 }
