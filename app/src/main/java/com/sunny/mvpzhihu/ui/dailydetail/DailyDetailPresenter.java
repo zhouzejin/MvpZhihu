@@ -88,10 +88,11 @@ public class DailyDetailPresenter extends BasePresenter<DailyDetailMvpView> {
                 });
     }
 
-    public boolean getIsShowSwipeBackHint() {
-        boolean isShow = mDataManager.isShowSwipeBackHint();
-        mDataManager.setIsShowSwipeBasckHint(false);
-        return isShow;
+    public void getIsShowSwipeBackHint() {
+        if (mDataManager.isShowSwipeBackHint()) {
+            getMvpView().showSwipeBackHint();
+            mDataManager.setShowSwipeBasckHint(false);
+        }
     }
 
 }

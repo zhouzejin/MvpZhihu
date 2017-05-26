@@ -16,6 +16,8 @@
 
     <string name="today_hot_news">今日热闻</string>
     <string name="swipe_back_hint">左滑可以返回哦~</string>
+    <string name="share_from">来自「知了日报」的分享：</string>
+    <string name="praise_num">点赞数：%1$d</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>

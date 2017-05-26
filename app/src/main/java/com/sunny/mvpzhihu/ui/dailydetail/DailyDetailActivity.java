@@ -11,6 +11,7 @@ import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
@@ -57,6 +58,9 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
 
     private static final String EXTRA_DAILY_ID = "daily_id";
 
+    private StoryEntity mStory;
+    private StoryExtraEntity mStoryExtra;
+
     /**
      * Return an Intent to start this Activity.
      */
@@ -86,21 +90,21 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mDailyDetailPresenter.detachView();
-    }
-
-    @Override
     public void initViews(Bundle savedInstanceState) {
         activityComponent().inject(this);
         setSwipeBackEnable(true);
         mDailyDetailPresenter.attachView(this);
 
-        showSwipeBackHint();
+        mDailyDetailPresenter.getIsShowSwipeBackHint();
         int dailyId = getIntent().getIntExtra(EXTRA_DAILY_ID, -1);
         mDailyDetailPresenter.loadDailyDetail(dailyId);
         mDailyDetailPresenter.loadDailyExtra(dailyId);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mDailyDetailPresenter.detachView();
     }
 
     @Override
@@ -117,7 +121,7 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
         mMenuPraise.getActionView().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onOptionsItemSelected(mMenuComment);
+                onOptionsItemSelected(mMenuPraise);
             }
         });
         return super.onCreateOptionsMenu(menu);
@@ -125,7 +129,43 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                share();
+                break;
+            case R.id.action_favorite:
+                favorite();
+                break;
+            case R.id.action_comment:
+                comment();
+                break;
+            case R.id.action_praise:
+                praise();
+                break;
+        }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void share() {
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.action_share));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.share_from) + mStory.title() +
+                "--http://daily.zhihu.com/story/" + mStory.id());
+        startActivity(Intent.createChooser(intent, mStory.title()));
+    }
+
+    private void favorite() {
+
+    }
+
+    private void comment() {
+
+    }
+
+    private void praise() {
+        Toast.makeText(mContext, getString(R.string.praise_num, mStoryExtra.popularity()),
+                Toast.LENGTH_SHORT).show();
     }
 
     /*****
@@ -146,6 +186,7 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
 
     @Override
     public void showDailyDetail(StoryEntity story) {
+        mStory = story;
         ImageLoader.DisplayOption option = new ImageLoader.DisplayOption.Builder()
                 .placeHolder(R.drawable.image_default).build();
         mImageLoader.displayUrlImage(mContext, mIvImage, story.image(), option);
@@ -158,6 +199,7 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
 
     @Override
     public void showDailyExtra(StoryExtraEntity storyExtra) {
+        mStoryExtra = storyExtra;
         TextView tvComment = (TextView) mMenuComment.getActionView();
         TextView tvPraise = (TextView) mMenuPraise.getActionView();
         tvComment.setText(String.valueOf(storyExtra.comments()));
@@ -166,9 +208,7 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
 
     @Override
     public void showSwipeBackHint() {
-        if (mDailyDetailPresenter.getIsShowSwipeBackHint()) {
-            Snackbar.make(mToolbar, R.string.swipe_back_hint, Snackbar.LENGTH_LONG).show();
-        }
+        Snackbar.make(mToolbar, R.string.swipe_back_hint, Snackbar.LENGTH_LONG).show();
     }
 
 }

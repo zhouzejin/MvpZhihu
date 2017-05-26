@@ -100,7 +100,7 @@ public class DataManager {
         return mZhihuService.getStoryExtra(dailyId);
     }
 
-    public void setIsShowSwipeBasckHint(boolean value) {
+    public void setShowSwipeBasckHint(boolean value) {
         mPreferencesHelper.putBoolean(PreferencesHelper.IS_SHOW_SWIPE_BACK_HINT, value);
     }
 
