@@ -3,6 +3,7 @@ package com.sunny.mvpzhihu.data;
 import com.sunny.mvpzhihu.data.local.DatabaseHelper;
 import com.sunny.mvpzhihu.data.local.PreferencesHelper;
 import com.sunny.mvpzhihu.data.model.bean.Creative;
+import com.sunny.mvpzhihu.data.model.bean.Editor;
 import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
@@ -11,6 +12,7 @@ import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
+import com.sunny.mvpzhihu.data.model.entity.StoryRecommendersEntity;
 import com.sunny.mvpzhihu.data.remote.RetrofitService;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
 import com.sunny.mvpzhihu.ui.main.daily.DailyModel;
@@ -106,6 +108,16 @@ public class DataManager {
 
     public boolean isShowSwipeBackHint() {
         return mPreferencesHelper.getBoolean(PreferencesHelper.IS_SHOW_SWIPE_BACK_HINT, true);
+    }
+
+    public Observable<List<Editor>> getEditors(int dailyId) {
+        return mZhihuService.getStoryRecommenders(dailyId)
+                .map(new Func1<StoryRecommendersEntity, List<Editor>>() {
+                    @Override
+                    public List<Editor> call(StoryRecommendersEntity storyRecommendersEntity) {
+                        return storyRecommendersEntity.editors();
+                    }
+                });
     }
 
 }

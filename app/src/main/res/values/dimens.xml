@@ -42,6 +42,16 @@
     <dimen name="daily_detail_source_margin_bottom">5dp</dimen>
     <dimen name="daily_detail_source_padding">5dp</dimen>
 
+    <!-- Recommenders -->
+    <dimen name="recommenders_item_height">80dp</dimen>
+    <dimen name="recommenders_avatar_width">60dp</dimen>
+    <dimen name="recommenders_avatar_height">60dp</dimen>
+    <dimen name="recommenders_avatar_margin">10dp</dimen>
+    <dimen name="recommenders_name_margin">5dp</dimen>
+    <dimen name="recommenders_bio_margin">5dp</dimen>
+    <dimen name="recommenders_title_margin">10dp</dimen>
+    <dimen name="recommenders_line_margin">5dp</dimen>
+
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>

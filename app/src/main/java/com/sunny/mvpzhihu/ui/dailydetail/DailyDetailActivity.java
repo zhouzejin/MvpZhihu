@@ -18,6 +18,7 @@ import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ActivityContext;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
+import com.sunny.mvpzhihu.ui.recommenders.RecommendersActivity;
 import com.sunny.mvpzhihu.utils.HtmlUtil;
 import com.sunny.mvpzhihu.utils.imageloader.ImageLoader;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
@@ -156,7 +157,7 @@ public class DailyDetailActivity extends BaseActivity implements DailyDetailMvpV
     }
 
     private void favorite() {
-
+        startActivity(RecommendersActivity.getStartIntent(this, mStory.id()));
     }
 
     private void comment() {

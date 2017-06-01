@@ -18,6 +18,8 @@
     <string name="swipe_back_hint">左滑可以返回哦~</string>
     <string name="share_from">来自「知了日报」的分享：</string>
     <string name="praise_num">点赞数：%1$d</string>
+    <string name="no_recommenders">该日报还没有推荐者哦！</string>
+    <string name="daily_recommenders">日报推荐者</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>

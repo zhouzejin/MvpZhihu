@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/recommenders_item_height"
+                android:layout_gravity="center">
+
+    <com.sunny.mvpzhihu.widget.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="@dimen/recommenders_avatar_width"
+        android:layout_height="@dimen/recommenders_avatar_height"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="@dimen/recommenders_avatar_margin"
+        app:srcCompat="@drawable/image_default"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/civ_avatar"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/recommenders_name_margin"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_large_body"/>
+
+        <TextView
+            android:id="@+id/tv_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/recommenders_bio_margin"
+            android:textColor="@color/text_color_black"
+            android:textSize="@dimen/text_body"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/recommenders_title_margin"
+        android:textColor="@color/text_color_normal"
+        android:textSize="@dimen/text_small_body"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="@dimen/recommenders_line_margin"
+        android:layout_marginRight="@dimen/recommenders_line_margin"
+        android:background="@android:color/darker_gray"/>
+</RelativeLayout>

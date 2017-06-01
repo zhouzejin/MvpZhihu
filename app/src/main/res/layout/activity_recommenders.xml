@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/app_bar_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_scrollFlags="scroll|enterAlways"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_recommenders"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:scrollbars="none"/>
+
+        <com.sunny.mvpzhihu.widget.CircleProgressView
+            android:id="@+id/circle_progress_recommenders"
+            android:layout_width="@dimen/circle_progress_view_default_size"
+            android:layout_height="@dimen/circle_progress_view_default_size"
+            android:layout_gravity="center"
+            app:matProg_barColor="?attr/colorPrimary"
+            app:matProg_barWidth="@dimen/circle_progress_view_default_border_width"/>
+
+        <TextView
+            android:id="@+id/tv_empty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/no_recommenders"
+            android:textColor="@color/text_color_normal"
+            android:textSize="@dimen/text_large_body"
+            android:visibility="gone"/>
+    </FrameLayout>
+</android.support.design.widget.CoordinatorLayout>
