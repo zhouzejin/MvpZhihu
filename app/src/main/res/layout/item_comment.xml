@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/comment_min_height">
+
+    <com.sunny.mvpzhihu.widget.CircleImageView
+        android:id="@+id/civ_avatar"
+        android:layout_width="@dimen/comment_avatar_width"
+        android:layout_height="@dimen/comment_avatar_height"
+        android:layout_alignParentLeft="true"
+        android:layout_margin="@dimen/comment_avatar_margin"
+        app:srcCompat="@drawable/image_default"/>
+
+    <TextView
+        android:id="@+id/tv_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@id/civ_avatar"
+        android:layout_marginTop="@dimen/comment_author_margin_top"
+        android:layout_toRightOf="@id/civ_avatar"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_large_body"/>
+
+    <TextView
+        android:id="@+id/tv_likes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_margin="@dimen/comment_likes_margin"
+        android:drawableLeft="@drawable/ic_action_praise"
+        android:drawableTint="@color/text_color_read"
+        android:gravity="center"
+        android:textColor="@color/text_color_read"/>
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/civ_avatar"
+        android:layout_marginLeft="@dimen/comment_content_margin_left"
+        android:padding="@dimen/comment_content_padding"
+        android:textColor="@color/text_color_normal"
+        android:textSize="@dimen/text_small_body"/>
+
+    <TextView
+        android:id="@+id/tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/tv_content"
+        android:layout_marginRight="@dimen/comment_time_margin_left"
+        android:padding="@dimen/comment_time_padding"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_alignParentBottom="true"
+        android:background="@android:color/darker_gray"/>
+</RelativeLayout>

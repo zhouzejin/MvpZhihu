@@ -51,7 +51,19 @@
     <dimen name="recommenders_bio_margin">5dp</dimen>
     <dimen name="recommenders_title_margin">10dp</dimen>
     <dimen name="recommenders_line_margin">5dp</dimen>
-    <dimen name="recommenders_tab_height">48dp</dimen>
+
+    <!-- Comment -->
+    <dimen name="comment_tab_height">48dp</dimen>
+    <dimen name="comment_min_height">150dp</dimen>
+    <dimen name="comment_avatar_width">35dp</dimen>
+    <dimen name="comment_avatar_height">35dp</dimen>
+    <dimen name="comment_avatar_margin">10dp</dimen>
+    <dimen name="comment_author_margin_top">15dp</dimen>
+    <dimen name="comment_likes_margin">10dp</dimen>
+    <dimen name="comment_content_margin_left">50dp</dimen>
+    <dimen name="comment_content_padding">10dp</dimen>
+    <dimen name="comment_time_padding">10dp</dimen>
+    <dimen name="comment_time_margin_left">10dp</dimen>
 
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>

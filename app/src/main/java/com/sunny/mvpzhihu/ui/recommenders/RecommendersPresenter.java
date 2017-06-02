@@ -73,7 +73,7 @@ public class RecommendersPresenter extends BasePresenter<RecommendersMvpView> {
                     @Override
                     public void onNext(List<Editor> editors) {
                         getMvpView().hideProgress();
-                        if (editors.isEmpty()) {
+                        if (editors == null || editors.isEmpty()) {
                             getMvpView().showEditorsEmpty();
                         } else {
                             getMvpView().showEditors(editors);

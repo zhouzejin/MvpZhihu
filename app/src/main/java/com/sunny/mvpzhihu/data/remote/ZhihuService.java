@@ -5,6 +5,7 @@ import android.content.Context;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.sunny.mvpzhihu.BuildConfig;
+import com.sunny.mvpzhihu.data.model.entity.CommentsEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
@@ -90,6 +91,24 @@ public interface ZhihuService {
      */
     @GET("4/story/{id}/recommenders")
     Observable<StoryRecommendersEntity> getStoryRecommenders(@Path("id") int id);
+
+    /**
+     * 查询日报的长评论
+     *
+     * @param id
+     * @return
+     */
+    @GET("4/story/{id}/long-comments")
+    Observable<CommentsEntity> getStoryLongComments(@Path("id") int id);
+
+    /**
+     * 查询日报的短评论
+     *
+     * @param id
+     * @return
+     */
+    @GET("4/story/{id}/short-comments")
+    Observable<CommentsEntity> getStoryShortComments(@Path("id") int id);
 
     /******** Helper class that sets up a new services *******/
     class Creator {

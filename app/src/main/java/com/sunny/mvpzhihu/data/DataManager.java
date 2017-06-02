@@ -2,10 +2,12 @@ package com.sunny.mvpzhihu.data;
 
 import com.sunny.mvpzhihu.data.local.DatabaseHelper;
 import com.sunny.mvpzhihu.data.local.PreferencesHelper;
+import com.sunny.mvpzhihu.data.model.bean.Comment;
 import com.sunny.mvpzhihu.data.model.bean.Creative;
 import com.sunny.mvpzhihu.data.model.bean.Editor;
 import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
+import com.sunny.mvpzhihu.data.model.entity.CommentsEntity;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
@@ -116,6 +118,26 @@ public class DataManager {
                     @Override
                     public List<Editor> call(StoryRecommendersEntity storyRecommendersEntity) {
                         return storyRecommendersEntity.editors();
+                    }
+                });
+    }
+
+    public Observable<List<Comment>> getLongComments(int commentId) {
+        return mZhihuService.getStoryLongComments(commentId)
+                .map(new Func1<CommentsEntity, List<Comment>>() {
+                    @Override
+                    public List<Comment> call(CommentsEntity commentsEntity) {
+                        return commentsEntity.comments();
+                    }
+                });
+    }
+
+    public Observable<List<Comment>> getShortComments(int commentId) {
+        return mZhihuService.getStoryShortComments(commentId)
+                .map(new Func1<CommentsEntity, List<Comment>>() {
+                    @Override
+                    public List<Comment> call(CommentsEntity commentsEntity) {
+                        return commentsEntity.comments();
                     }
                 });
     }

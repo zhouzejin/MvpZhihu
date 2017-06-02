@@ -4,6 +4,8 @@ import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.injection.module.FragmentModule;
 import com.sunny.mvpzhihu.injection.scope.InFragment;
+import com.sunny.mvpzhihu.ui.comment.LongCommentFragment;
+import com.sunny.mvpzhihu.ui.comment.ShortCommentFragment;
 import com.sunny.mvpzhihu.ui.example.MainFragment;
 import com.sunny.mvpzhihu.ui.main.daily.DailyFragment;
 
@@ -20,5 +22,9 @@ public interface FragmentComponent {
     void inject(MainFragment mainFragment);
 
     void inject(DailyFragment dailyFragment);
+
+    void inject(LongCommentFragment longCommentFragment);
+
+    void inject(ShortCommentFragment shortCommentFragment);
 
 }

@@ -59,7 +59,9 @@ public class CommentActivity extends BaseActivity {
 
     @Override
     public void initToolBar() {
+        mDailyId = getIntent().getIntExtra(EXTRA_DAILY_ID, -1);
         mStoryExtra = getIntent().getParcelableExtra(EXTRA_DAILY_EXTRA);
+
         mToolbar.setTitle(getString(R.string.comment_num, mStoryExtra.comments()));
         setSupportActionBar(mToolbar);
         mToolbar.setNavigationIcon(R.drawable.ic_back);
@@ -75,9 +77,10 @@ public class CommentActivity extends BaseActivity {
     public void initViews(Bundle savedInstanceState) {
         setSwipeBackEnable(true);
 
-        mDailyId = getIntent().getIntExtra(EXTRA_DAILY_ID, -1);
         mTitles.add(getString(R.string.long_comment_num, mStoryExtra.long_comments()));
         mTitles.add(getString(R.string.short_comment_num, mStoryExtra.short_comments()));
+        mFragments.add(LongCommentFragment.newInstance(mDailyId));
+        mFragments.add(ShortCommentFragment.newInstance(mDailyId));
 
         CommentPagerAdapter pagerAdapter = new CommentPagerAdapter(getSupportFragmentManager());
         mViewPager.setAdapter(pagerAdapter);
