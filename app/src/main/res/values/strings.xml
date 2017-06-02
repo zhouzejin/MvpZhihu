@@ -20,6 +20,9 @@
     <string name="praise_num">点赞数：%1$d</string>
     <string name="no_recommenders">该日报还没有推荐者哦！</string>
     <string name="daily_recommenders">日报推荐者</string>
+    <string name="comment_num">%1$d&#160;&#160;条评论</string>
+    <string name="long_comment_num">长评论&#160;(%1$d)</string>
+    <string name="short_comment_num">短评论&#160;(%1$d)</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>

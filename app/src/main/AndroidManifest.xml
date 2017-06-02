@@ -40,6 +40,11 @@
             android:name=".ui.recommenders.RecommendersActivity"
             android:screenOrientation="portrait"/>
 
+        <!-- 日报评论界面 -->
+        <activity
+            android:name=".ui.comment.CommentActivity"
+            android:screenOrientation="portrait"/>
+
         <activity
             android:name=".ui.example.MainActivity"
             android:label="@string/app_name"/>

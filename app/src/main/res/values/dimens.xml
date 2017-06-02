@@ -51,6 +51,7 @@
     <dimen name="recommenders_bio_margin">5dp</dimen>
     <dimen name="recommenders_title_margin">10dp</dimen>
     <dimen name="recommenders_line_margin">5dp</dimen>
+    <dimen name="recommenders_tab_height">48dp</dimen>
 
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
