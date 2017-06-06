@@ -7,6 +7,7 @@ import com.sunny.mvpzhihu.data.model.bean.Creative;
 import com.sunny.mvpzhihu.data.model.bean.Editor;
 import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
+import com.sunny.mvpzhihu.data.model.bean.Theme;
 import com.sunny.mvpzhihu.data.model.entity.CommentsEntity;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
@@ -15,6 +16,7 @@ import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryRecommendersEntity;
+import com.sunny.mvpzhihu.data.model.entity.ThemesEntity;
 import com.sunny.mvpzhihu.data.remote.RetrofitService;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
 import com.sunny.mvpzhihu.ui.main.daily.DailyModel;
@@ -138,6 +140,16 @@ public class DataManager {
                     @Override
                     public List<Comment> call(CommentsEntity commentsEntity) {
                         return commentsEntity.comments();
+                    }
+                });
+    }
+
+    public Observable<List<Theme>> getThemes() {
+        return mZhihuService.getThemes()
+                .map(new Func1<ThemesEntity, List<Theme>>() {
+                    @Override
+                    public List<Theme> call(ThemesEntity themesEntity) {
+                        return themesEntity.others();
                     }
                 });
     }

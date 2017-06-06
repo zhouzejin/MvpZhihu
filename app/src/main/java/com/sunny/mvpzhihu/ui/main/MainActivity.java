@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
 import com.sunny.mvpzhihu.ui.main.daily.DailyFragment;
+import com.sunny.mvpzhihu.ui.main.theme.ThemeFragment;
 import com.sunny.mvpzhihu.utils.ActivityUtil;
 
 import java.util.HashMap;
@@ -29,7 +30,8 @@ import butterknife.BindView;
  */
 public class MainActivity extends BaseActivity {
 
-    private static final String DAILY_TAG = "DAILY_FRAGMENT";
+    private static final String DAILY_TAG = "daily_fragment";
+    private static final String THEME_TAG = "theme_fragment";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -98,6 +100,7 @@ public class MainActivity extends BaseActivity {
     private void addFragments() {
         mFragments = new HashMap<>();
         mFragments.put(DAILY_TAG, DailyFragment.newInstance());
+        mFragments.put(THEME_TAG, ThemeFragment.newInstance());
     }
 
     private void initBottomNavigation() {
@@ -110,7 +113,7 @@ public class MainActivity extends BaseActivity {
                                 showFragment(DAILY_TAG);
                                 break;
                             case R.id.item_article:
-                                Toast.makeText(MainActivity.this, "主题", Toast.LENGTH_LONG).show();
+                                showFragment(THEME_TAG);
                                 break;
                             case R.id.item_column:
                                 Toast.makeText(MainActivity.this, "专栏", Toast.LENGTH_LONG).show();
