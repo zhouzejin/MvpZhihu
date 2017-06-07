@@ -47,8 +47,6 @@
     <dimen name="recommenders_avatar_width">60dp</dimen>
     <dimen name="recommenders_avatar_height">60dp</dimen>
     <dimen name="recommenders_avatar_margin">10dp</dimen>
-    <dimen name="recommenders_name_margin">5dp</dimen>
-    <dimen name="recommenders_bio_margin">5dp</dimen>
     <dimen name="recommenders_title_margin">10dp</dimen>
     <dimen name="recommenders_line_margin">5dp</dimen>
 
@@ -75,6 +73,25 @@
     <dimen name="theme_image_height">110dp</dimen>
     <dimen name="theme_description_margin_left">10dp</dimen>
     <dimen name="theme_description_margin_top">10dp</dimen>
+
+    <!-- Theme Detail -->
+    <dimen name="theme_daily_card_view_height">100dp</dimen>
+    <dimen name="theme_daily_card_view_margin">10dp</dimen>
+    <dimen name="theme_daily_card_view_corner_radius">2dp</dimen>
+    <dimen name="theme_daily_card_view_elevation">4dp</dimen>
+    <dimen name="theme_daily_relative_layout_padding">10dp</dimen>
+    <dimen name="theme_daily_image_width">80dp</dimen>
+    <dimen name="theme_daily_image_height">80dp</dimen>
+    <dimen name="theme_daily_title_margin_right">10dp</dimen>
+    <dimen name="theme_daily_title_line_space">2dp</dimen>
+    <dimen name="theme_header_image_height">256dp</dimen>
+    <dimen name="theme_header_shadow_height">84dp</dimen>
+    <dimen name="theme_header_description_padding">16dp</dimen>
+    <dimen name="theme_header_editor_padding">10dp</dimen>
+    <dimen name="theme_header_editor_height">50dp</dimen>
+    <dimen name="theme_header_editor_avatar_width">32dp</dimen>
+    <dimen name="theme_header_editor_avatar_height">32dp</dimen>
+    <dimen name="theme_header_editor_avatar_margin">8dp</dimen>
 
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>

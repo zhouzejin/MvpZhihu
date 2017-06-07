@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tv_theme_detail_editor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true"
+        android:padding="@dimen/theme_header_editor_padding"
+        android:text="@string/theme_editor"
+        android:textColor="@color/text_color_normal"
+        android:textSize="@dimen/text_body"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_theme_editor"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/theme_header_editor_height"
+        android:layout_centerInParent="true"
+        android:layout_toRightOf="@+id/tv_theme_detail_editor"
+        android:overScrollMode="never"/>
+</RelativeLayout>

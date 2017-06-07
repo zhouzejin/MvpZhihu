@@ -1,6 +1,7 @@
 package com.sunny.mvpzhihu.data.model.entity;
 
 import android.os.Parcelable;
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 import com.google.gson.Gson;
@@ -17,9 +18,9 @@ import java.util.List;
 public abstract class StoryEntity implements Parcelable {
 
     public abstract String body();
-    public abstract String image_source();
+    @Nullable public abstract String image_source();
     public abstract String title();
-    public abstract String image();
+    @Nullable public abstract String image();
     public abstract String share_url();
     public abstract String ga_prefix();
     public abstract int type();

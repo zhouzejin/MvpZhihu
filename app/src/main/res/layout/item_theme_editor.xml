@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sunny.mvpzhihu.widget.CircleImageView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/civ_theme_editor_avatar"
+    android:layout_width="@dimen/theme_header_editor_avatar_width"
+    android:layout_height="@dimen/theme_header_editor_avatar_height"
+    android:layout_margin="@dimen/theme_header_editor_avatar_margin"/>

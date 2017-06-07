@@ -6,13 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.data.DataManager;
 import com.sunny.mvpzhihu.data.model.bean.Theme;
 import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
+import com.sunny.mvpzhihu.ui.themedetail.ThemeDetailActivity;
 import com.sunny.mvpzhihu.utils.LogUtil;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 
@@ -71,7 +71,7 @@ public class ThemeFragment extends BaseFragment {
         mThemeAdapter.setItemListener(new ThemeAdapter.ThemeItemListener() {
             @Override
             public void onThemeClick(Theme theme) {
-                Toast.makeText(mContext, theme.name(), Toast.LENGTH_SHORT).show();
+                startActivity(ThemeDetailActivity.getStartIntent(mContext, theme));
             }
         });
         mRecyclerTheme.setAdapter(mThemeAdapter);

@@ -6,7 +6,6 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-
 import com.sunny.mvpzhihu.utils.NetworkUtil;
 
 /**
@@ -19,7 +18,7 @@ public class GlideImageLoader implements ImageLoader {
 
     @Override
     public void displayUrlImage(Context context, ImageView imageView, String imageUrl,
-                             DisplayOption option) {
+                                DisplayOption option) {
         int strategy = option.getWifiStrategy();
         if (strategy == LOAD_STRATEGY_ONLY_WIFI) {
             int netType = NetworkUtil.getNetWorkType(context);
@@ -47,11 +46,12 @@ public class GlideImageLoader implements ImageLoader {
     /**
      * load image with Glide
      */
-    private void loadNormal(Context context, ImageView imageView, String imageUrl,
+    private void loadNormal(Context context, final ImageView imageView, String imageUrl,
                             DisplayOption option) {
         Glide.with(context)
                 .load(imageUrl)
                 .placeholder(option.getPlaceHolder())
+                .dontAnimate() // 不使用加载动画，从而避免加载圆形自定义ImageView时只显示默认图片
                 .into(imageView);
     }
 

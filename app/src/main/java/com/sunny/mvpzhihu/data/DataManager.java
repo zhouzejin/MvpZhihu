@@ -16,6 +16,7 @@ import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryRecommendersEntity;
+import com.sunny.mvpzhihu.data.model.entity.ThemeDetailEntity;
 import com.sunny.mvpzhihu.data.model.entity.ThemesEntity;
 import com.sunny.mvpzhihu.data.remote.RetrofitService;
 import com.sunny.mvpzhihu.data.remote.ZhihuService;
@@ -152,6 +153,10 @@ public class DataManager {
                         return themesEntity.others();
                     }
                 });
+    }
+
+    public Observable<ThemeDetailEntity> getThemeDetail(int themeId) {
+        return mZhihuService.getThemeDetail(themeId);
     }
 
 }

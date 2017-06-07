@@ -5,10 +5,10 @@ import java.util.List;
 CREATE TABLE Story (
     type INTEGER AS Integer NOT NULL,
     id INTEGER AS Integer NOT NULL PRIMARY KEY,
-    ga_prefix TEXT NOT NULL,
+    ga_prefix TEXT,
     title TEXT NOT NULL,
     multipic INTEGER AS Boolean DEFAULT 0,
-    images TEXT AS List<String> NOT NULL
+    images TEXT AS List<String>
 );
 
 -- Further SQL statements are proceeded by an identifier.

@@ -15,10 +15,10 @@ import com.google.gson.TypeAdapter;
 @AutoValue
 public abstract class ReplyTo implements Parcelable {
 
-    public abstract String content();
+    @Nullable public abstract String content();
     public abstract int status();
     public abstract int id();
-    public abstract String author();
+    @Nullable public abstract String author();
     @Nullable public abstract String err_msg();
 
     public static ReplyTo create(String content, int status, int id, String author, String err_msg) {

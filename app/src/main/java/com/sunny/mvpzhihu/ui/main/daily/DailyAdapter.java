@@ -76,11 +76,11 @@ public class DailyAdapter extends RecyclerView.Adapter<DailyAdapter.DailyViewHol
         if (model == null) return;
         setDailyData(holder, model);
         if (holder instanceof DailyTimeViewHolder) {
-            DailyTimeViewHolder dailyTimeHoder = (DailyTimeViewHolder) holder;
+            DailyTimeViewHolder dailyTimeHolder = (DailyTimeViewHolder) holder;
             String time = DateUtil.formatDate(model.getDate() + "  " +
                     DateUtil.getWeek(model.getDate()));
             if (position == 0) time = mContext.getString(R.string.today_hot_news);
-            dailyTimeHoder.mTvDailyTime.setText(time);
+            dailyTimeHolder.mTvDailyTime.setText(time);
         }
     }
 

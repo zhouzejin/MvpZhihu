@@ -24,6 +24,7 @@
     <string name="long_comment_num">长评论&#160;(%1$d)</string>
     <string name="short_comment_num">短评论&#160;(%1$d)</string>
     <string name="no_comment">还没有评论哦!</string>
+    <string name="theme_editor">主编</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>

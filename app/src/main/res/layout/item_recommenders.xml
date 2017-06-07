@@ -19,14 +19,14 @@
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/civ_avatar"
-        android:gravity="center"
+        android:gravity="left|center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/tv_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/recommenders_name_margin"
+            android:layout_gravity="top"
             android:textColor="@color/text_color_black"
             android:textSize="@dimen/text_large_body"/>
 
@@ -34,7 +34,7 @@
             android:id="@+id/tv_bio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="@dimen/recommenders_bio_margin"
+            android:layout_gravity="bottom"
             android:textColor="@color/text_color_black"
             android:textSize="@dimen/text_body"/>
     </LinearLayout>

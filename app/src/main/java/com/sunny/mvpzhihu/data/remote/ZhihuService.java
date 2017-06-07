@@ -12,6 +12,7 @@ import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryExtraEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryRecommendersEntity;
+import com.sunny.mvpzhihu.data.model.entity.ThemeDetailEntity;
 import com.sunny.mvpzhihu.data.model.entity.ThemesEntity;
 import com.sunny.mvpzhihu.injection.qualifier.ApplicationContext;
 import com.sunny.mvpzhihu.utils.NetworkUtil;
@@ -118,6 +119,15 @@ public interface ZhihuService {
      */
     @GET("4/themes")
     Observable<ThemesEntity> getThemes();
+
+    /**
+     * 获取主题日报详情数据
+     *
+     * @param themeId
+     * @return
+     */
+    @GET("4/theme/{id}")
+    Observable<ThemeDetailEntity> getThemeDetail(@Path("id") int themeId);
 
     /******** Helper class that sets up a new services *******/
     class Creator {

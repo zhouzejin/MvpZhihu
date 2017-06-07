@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card_view_theme_daily"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/theme_daily_card_view_height"
+    android:layout_margin="@dimen/theme_daily_card_view_margin"
+    app:cardBackgroundColor="@color/card_view_background"
+    app:cardCornerRadius="@dimen/theme_daily_card_view_corner_radius"
+    app:cardElevation="@dimen/theme_daily_card_view_elevation">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/theme_daily_relative_layout_padding">
+
+        <ImageView
+            android:id="@+id/iv_theme_daily_image"
+            android:layout_width="@dimen/theme_daily_image_width"
+            android:layout_height="@dimen/theme_daily_image_height"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitCenter"
+            android:src="@drawable/image_default"/>
+
+        <TextView
+            android:id="@+id/tv_theme_daily_title"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"
+            android:layout_marginRight="@dimen/theme_daily_title_margin_right"
+            android:layout_toLeftOf="@id/iv_theme_daily_image"
+            android:gravity="top|center"
+            android:lineSpacingExtra="@dimen/theme_daily_title_line_space"
+            android:maxLines="3"
+            android:textColor="@color/text_color_normal"
+            android:textSize="@dimen/text_large_body"/>
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
