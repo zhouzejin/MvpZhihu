@@ -26,7 +26,7 @@ public abstract class StoryEntity implements Parcelable {
     public abstract int type();
     public abstract int id();
     public abstract List<String> js();
-    public abstract List<String> images();
+    @Nullable public abstract List<String> images();
     public abstract List<String> css();
 
     public static StoryEntity create(String body, String image_source, String title, String image,

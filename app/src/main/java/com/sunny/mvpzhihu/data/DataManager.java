@@ -5,12 +5,14 @@ import com.sunny.mvpzhihu.data.local.PreferencesHelper;
 import com.sunny.mvpzhihu.data.model.bean.Comment;
 import com.sunny.mvpzhihu.data.model.bean.Creative;
 import com.sunny.mvpzhihu.data.model.bean.Editor;
+import com.sunny.mvpzhihu.data.model.bean.Section;
 import com.sunny.mvpzhihu.data.model.bean.Story;
 import com.sunny.mvpzhihu.data.model.bean.Subject;
 import com.sunny.mvpzhihu.data.model.bean.Theme;
 import com.sunny.mvpzhihu.data.model.entity.CommentsEntity;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
+import com.sunny.mvpzhihu.data.model.entity.SectionsEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoryEntity;
@@ -157,6 +159,16 @@ public class DataManager {
 
     public Observable<ThemeDetailEntity> getThemeDetail(int themeId) {
         return mZhihuService.getThemeDetail(themeId);
+    }
+
+    public Observable<List<Section>> getSections() {
+        return mZhihuService.getSections()
+                .map(new Func1<SectionsEntity, List<Section>>() {
+                    @Override
+                    public List<Section> call(SectionsEntity sectionsEntity) {
+                        return sectionsEntity.sections();
+                    }
+                });
     }
 
 }

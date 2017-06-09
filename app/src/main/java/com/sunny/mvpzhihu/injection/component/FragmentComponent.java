@@ -8,6 +8,7 @@ import com.sunny.mvpzhihu.ui.comment.LongCommentFragment;
 import com.sunny.mvpzhihu.ui.comment.ShortCommentFragment;
 import com.sunny.mvpzhihu.ui.example.MainFragment;
 import com.sunny.mvpzhihu.ui.main.daily.DailyFragment;
+import com.sunny.mvpzhihu.ui.main.section.SectionFragment;
 import com.sunny.mvpzhihu.ui.main.theme.ThemeFragment;
 
 import dagger.Subcomponent;
@@ -29,5 +30,7 @@ public interface FragmentComponent {
     void inject(ShortCommentFragment shortCommentFragment);
 
     void inject(ThemeFragment themeFragment);
+
+    void inject(SectionFragment sectionFragment);
 
 }

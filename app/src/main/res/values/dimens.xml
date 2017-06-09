@@ -93,6 +93,17 @@
     <dimen name="theme_header_editor_avatar_height">32dp</dimen>
     <dimen name="theme_header_editor_avatar_margin">8dp</dimen>
 
+    <!-- Section -->
+    <dimen name="section_card_view_height">100dp</dimen>
+    <dimen name="section_card_view_margin">10dp</dimen>
+    <dimen name="section_card_view_corner_radius">4dp</dimen>
+    <dimen name="section_card_view_elevation">4dp</dimen>
+    <dimen name="section_image_width">100dp</dimen>
+    <dimen name="section_image_height">100dp</dimen>
+    <dimen name="section_relative_layout_padding">10dp</dimen>
+    <dimen name="section_name_margin_left">10dp</dimen>
+    <dimen name="section_name_margin_top">5dp</dimen>
+
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>
