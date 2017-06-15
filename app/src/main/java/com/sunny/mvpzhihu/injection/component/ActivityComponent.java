@@ -5,6 +5,7 @@ import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.injection.scope.InActivity;
 import com.sunny.mvpzhihu.ui.dailydetail.DailyDetailActivity;
 import com.sunny.mvpzhihu.ui.recommenders.RecommendersActivity;
+import com.sunny.mvpzhihu.ui.sectiondetail.SectionDetailActivity;
 import com.sunny.mvpzhihu.ui.splash.SplashActivity;
 import com.sunny.mvpzhihu.ui.themedetail.ThemeDetailActivity;
 
@@ -25,5 +26,7 @@ public interface ActivityComponent {
     void inject(RecommendersActivity recommendersActivity);
 
     void inject(ThemeDetailActivity themeDetailActivity);
+
+    void inject(SectionDetailActivity sectionDetailActivity);
 
 }

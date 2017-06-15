@@ -6,13 +6,13 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.data.DataManager;
 import com.sunny.mvpzhihu.data.model.bean.Section;
 import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
+import com.sunny.mvpzhihu.ui.sectiondetail.SectionDetailActivity;
 import com.sunny.mvpzhihu.utils.LogUtil;
 
 import java.util.List;
@@ -86,7 +86,7 @@ public class SectionFragment extends BaseFragment {
         mSectionAdapter.setItemListener(new SectionAdapter.SectionItemListener() {
             @Override
             public void onSectionClick(Section section) {
-                Toast.makeText(mContext, section.description(), Toast.LENGTH_SHORT).show();
+                startActivity(SectionDetailActivity.getStartIntent(mContext, section));
             }
         });
         mRecyclerSection.setAdapter(mSectionAdapter);

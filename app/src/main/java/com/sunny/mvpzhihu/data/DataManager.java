@@ -12,6 +12,7 @@ import com.sunny.mvpzhihu.data.model.bean.Theme;
 import com.sunny.mvpzhihu.data.model.entity.CommentsEntity;
 import com.sunny.mvpzhihu.data.model.entity.InTheatersEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
+import com.sunny.mvpzhihu.data.model.entity.SectionDetailEntity;
 import com.sunny.mvpzhihu.data.model.entity.SectionsEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
@@ -169,6 +170,14 @@ public class DataManager {
                         return sectionsEntity.sections();
                     }
                 });
+    }
+
+    public Observable<SectionDetailEntity> getSectionDetail(int sectionId) {
+        return mZhihuService.getSectionDetail(sectionId);
+    }
+
+    public Observable<SectionDetailEntity> getBeforeSectionDetail(int sectionId, long timestamp) {
+        return mZhihuService.getBeforeSectionDetail(sectionId, timestamp);
     }
 
 }

@@ -7,6 +7,7 @@ import com.google.gson.GsonBuilder;
 import com.sunny.mvpzhihu.BuildConfig;
 import com.sunny.mvpzhihu.data.model.entity.CommentsEntity;
 import com.sunny.mvpzhihu.data.model.entity.PrefetchLaunchImagesEntity;
+import com.sunny.mvpzhihu.data.model.entity.SectionDetailEntity;
 import com.sunny.mvpzhihu.data.model.entity.SectionsEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesBeforeEntity;
 import com.sunny.mvpzhihu.data.model.entity.StoriesLastEntity;
@@ -137,6 +138,25 @@ public interface ZhihuService {
      */
     @GET("3/sections")
     Observable<SectionsEntity> getSections();
+
+    /**
+     * 获取专栏日报详情数据
+     *
+     * @param sectionId
+     * @return
+     */
+    @GET("3/section/{id}")
+    Observable<SectionDetailEntity> getSectionDetail(@Path("id") int sectionId);
+
+    /**
+     * 获取专栏的历史数据
+     *
+     * @param sectionId
+     * @param timestamp
+     * @return
+     */
+    @GET("3/section/{id}/before/{timestamp}")
+    Observable<SectionDetailEntity> getBeforeSectionDetail(@Path("id") int sectionId, @Path("timestamp") long timestamp);
 
     /******** Helper class that sets up a new services *******/
     class Creator {
