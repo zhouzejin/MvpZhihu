@@ -14,7 +14,7 @@ import com.sunny.mvpzhihu.data.model.bean.SectionStory;
 import com.sunny.mvpzhihu.injection.qualifier.ActivityContext;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
 import com.sunny.mvpzhihu.ui.dailydetail.DailyDetailActivity;
-import com.sunny.mvpzhihu.ui.main.AutoLoadOnScrollListener;
+import com.sunny.mvpzhihu.ui.base.AutoLoadOnScrollListener;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 
 import java.util.List;

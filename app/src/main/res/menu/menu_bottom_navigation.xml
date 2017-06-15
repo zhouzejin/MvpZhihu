@@ -1,22 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
-        android:id="@+id/item_answer"
+        android:id="@+id/item_daily"
         android:icon="@drawable/ic_profile_answer"
-        android:title="@string/navigation_answer" />
+        android:title="@string/navigation_daily" />
 
     <item
-        android:id="@+id/item_article"
+        android:id="@+id/item_theme"
         android:icon="@drawable/ic_profile_article"
-        android:title="@string/navigation_article" />
+        android:title="@string/navigation_theme" />
 
     <item
-        android:id="@+id/item_column"
+        android:id="@+id/item_section"
         android:icon="@drawable/ic_profile_column"
-        android:title="@string/navigation_column" />
+        android:title="@string/navigation_section" />
 
     <item
-        android:id="@+id/item_favorite"
+        android:id="@+id/item_news"
         android:icon="@drawable/ic_profile_favorite"
-        android:title="@string/navigation_favorite" />
+        android:title="@string/navigation_news" />
 </menu>

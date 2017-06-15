@@ -9,10 +9,10 @@
     <string name="action_comment">评论</string>
     <string name="action_praise">点赞</string>
 
-    <string name="navigation_answer">日报</string>
-    <string name="navigation_article">主题</string>
-    <string name="navigation_column">专栏</string>
-    <string name="navigation_favorite">文章</string>
+    <string name="navigation_daily">日报</string>
+    <string name="navigation_theme">主题</string>
+    <string name="navigation_section">专栏</string>
+    <string name="navigation_news">新闻</string>
 
     <string name="today_hot_news">今日热闻</string>
     <string name="swipe_back_hint">左滑可以返回哦~</string>

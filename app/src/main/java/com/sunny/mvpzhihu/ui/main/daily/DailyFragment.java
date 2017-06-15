@@ -18,7 +18,7 @@ import com.sunny.mvpzhihu.injection.qualifier.FragmentContext;
 import com.sunny.mvpzhihu.ui.base.BaseFragment;
 import com.sunny.mvpzhihu.ui.base.HeaderAndFooterWrappedAdapter;
 import com.sunny.mvpzhihu.ui.dailydetail.DailyDetailActivity;
-import com.sunny.mvpzhihu.ui.main.AutoLoadOnScrollListener;
+import com.sunny.mvpzhihu.ui.base.AutoLoadOnScrollListener;
 import com.sunny.mvpzhihu.ui.main.MainActivity;
 import com.sunny.mvpzhihu.widget.CircleProgressView;
 import com.sunny.mvpzhihu.widget.bannerviewpager.BannerViewPager;

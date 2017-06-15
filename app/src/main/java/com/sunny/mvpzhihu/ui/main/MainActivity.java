@@ -112,16 +112,16 @@ public class MainActivity extends BaseActivity {
                     @Override
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
-                            case R.id.item_answer:
+                            case R.id.item_daily:
                                 showFragment(DAILY_TAG);
                                 break;
-                            case R.id.item_article:
+                            case R.id.item_theme:
                                 showFragment(THEME_TAG);
                                 break;
-                            case R.id.item_column:
+                            case R.id.item_section:
                                 showFragment(SECTION_TAG);
                                 break;
-                            case R.id.item_favorite:
+                            case R.id.item_news:
                                 Toast.makeText(MainActivity.this, "文章", Toast.LENGTH_LONG).show();
                                 break;
                         }
