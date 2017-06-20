@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
 import com.sunny.mvpzhihu.ui.main.daily.DailyFragment;
+import com.sunny.mvpzhihu.ui.main.news.NewsFragment;
 import com.sunny.mvpzhihu.ui.main.section.SectionFragment;
 import com.sunny.mvpzhihu.ui.main.theme.ThemeFragment;
 import com.sunny.mvpzhihu.utils.ActivityUtil;
@@ -34,6 +35,7 @@ public class MainActivity extends BaseActivity {
     private static final String DAILY_TAG = "daily_fragment";
     private static final String THEME_TAG = "theme_fragment";
     private static final String SECTION_TAG = "section_fragment";
+    private static final String NEWS_TAG = "news_tag";
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -104,6 +106,7 @@ public class MainActivity extends BaseActivity {
         mFragments.put(DAILY_TAG, DailyFragment.newInstance());
         mFragments.put(THEME_TAG, ThemeFragment.newInstance());
         mFragments.put(SECTION_TAG, SectionFragment.newInstance());
+        mFragments.put(NEWS_TAG, NewsFragment.newInstance());
     }
 
     private void initBottomNavigation() {
@@ -122,7 +125,7 @@ public class MainActivity extends BaseActivity {
                                 showFragment(SECTION_TAG);
                                 break;
                             case R.id.item_news:
-                                Toast.makeText(MainActivity.this, "文章", Toast.LENGTH_LONG).show();
+                                showFragment(NEWS_TAG);
                                 break;
                         }
                         return true;

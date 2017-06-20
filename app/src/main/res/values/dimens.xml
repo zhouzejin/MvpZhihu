@@ -117,6 +117,17 @@
     <dimen name="section_daily_image_width">80dp</dimen>
     <dimen name="section_daily_image_height">80dp</dimen>
 
+    <!-- News -->
+    <dimen name="news_card_view_height">100dp</dimen>
+    <dimen name="news_card_view_margin">10dp</dimen>
+    <dimen name="news_card_view_corner_radius">4dp</dimen>
+    <dimen name="news_card_view_elevation">4dp</dimen>
+    <dimen name="news_relative_layout_padding">10dp</dimen>
+    <dimen name="news_image_width">80dp</dimen>
+    <dimen name="news_image_height">80dp</dimen>
+    <dimen name="news_title_margin_left">10dp</dimen>
+    <dimen name="news_title_line_space">2dp</dimen>
+
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>
