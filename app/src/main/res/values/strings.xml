@@ -25,6 +25,11 @@
     <string name="short_comment_num">短评论&#160;(%1$d)</string>
     <string name="no_comment">还没有评论哦!</string>
     <string name="theme_editor">主编</string>
+    <string name="nickname">angel5blue</string>
+    <string name="look_homepage">查看我的个人主页</string>
+    <string name="feedback">意见反馈</string>
+    <string name="common_setting">通用设置</string>
+    <string name="about_app">关于知乎日报</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>

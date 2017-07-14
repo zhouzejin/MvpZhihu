@@ -3,13 +3,18 @@
     <color name="primary">#F15D5B</color>
     <color name="primary_dark">#D04C48</color>
     <color name="accent">#FF4081</color>
+
     <color name="window_background">#FFFEFEFE</color>
     <color name="bottom_navigation_background">#FFF8F8F8</color>
+    <color name="activity_background">#fff8f8f8</color>
     <color name="card_view_background">#FFFFFF</color>
+    <color name="line_background">#e6e6e6</color>
+
     <color name="text_color_normal">#555555</color>
     <color name="text_color_read">#9E9E9E</color>
     <color name="text_color_unread">#000000</color>
     <color name="text_color_shadow">#272727</color>
     <color name="text_color_black">#dd000000</color>
     <color name="text_color_tab">#AAFFFFFF</color>
+    <color name="text_color_gary">#888888</color>
 </resources>

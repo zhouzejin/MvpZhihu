@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/activity_background"
+              android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/app_bar_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:popupTheme="@style/Theme.AppCompat.Light"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <com.sunny.mvpzhihu.widget.SpringScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/more_my_info_height"
+                android:layout_marginTop="@dimen/more_card_view_margin_top"
+                app:cardCornerRadius="@dimen/more_card_view_corner_radius"
+                app:elevation="@dimen/more_card_view_elevation">
+
+
+                <RelativeLayout
+                    android:id="@+id/rl_my_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="?android:selectableItemBackground">
+
+                    <com.sunny.mvpzhihu.widget.CircleImageView
+                        android:id="@+id/civ_my_photo"
+                        android:layout_width="@dimen/more_photo_width"
+                        android:layout_height="@dimen/more_photo_height"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/more_photo_margin_left"
+                        android:src="@drawable/src_my_photo"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/more_info_margin_left"
+                        android:layout_toRightOf="@id/civ_my_photo"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/nickname"
+                            android:textColor="@color/text_color_gary"
+                            android:textSize="@dimen/text_body"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/more_info_distance"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/look_homepage"
+                            android:textColor="@color/text_color_gary"
+                            android:textSize="@dimen/text_small_body"/>
+                    </LinearLayout>
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/more_card_view_margin_top"
+                app:cardCornerRadius="@dimen/more_card_view_corner_radius"
+                app:elevation="@dimen/more_card_view_elevation">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv_feedback"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/ic_feedback"
+                        android:drawablePadding="@dimen/more_info_drawable_padding"
+                        android:drawableTint="@color/text_color_read"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/more_info_padding"
+                        android:text="@string/feedback"
+                        android:textColor="@color/text_color_gary"
+                        android:textSize="@dimen/text_body"/>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginLeft="@dimen/more_info_line_margin_left"
+                        android:background="@color/line_background"/>
+
+                    <TextView
+                        android:id="@+id/tv_setting"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="?android:attr/selectableItemBackground"
+                        android:clickable="true"
+                        android:drawableLeft="@drawable/ic_setting"
+                        android:drawablePadding="@dimen/more_info_drawable_padding"
+                        android:drawableTint="@color/text_color_read"
+                        android:gravity="center_vertical"
+                        android:padding="@dimen/more_info_padding"
+                        android:text="@string/common_setting"
+                        android:textColor="@color/text_color_gary"
+                        android:textSize="@dimen/text_body"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/more_card_view_margin_top"
+                app:cardCornerRadius="@dimen/more_card_view_corner_radius"
+                app:elevation="@dimen/more_card_view_elevation">
+
+                <TextView
+                    android:id="@+id/tv_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:drawableLeft="@drawable/ic_about"
+                    android:drawablePadding="@dimen/more_info_drawable_padding"
+                    android:drawableTint="@color/text_color_read"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/more_info_padding"
+                    android:text="@string/about_app"
+                    android:textColor="@color/text_color_gary"
+                    android:textSize="@dimen/text_body"/>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </com.sunny.mvpzhihu.widget.SpringScrollView>
+</LinearLayout>

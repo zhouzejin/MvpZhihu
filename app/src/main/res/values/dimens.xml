@@ -128,6 +128,20 @@
     <dimen name="news_title_margin_left">10dp</dimen>
     <dimen name="news_title_line_space">2dp</dimen>
 
+    <!-- More -->
+    <dimen name="more_my_info_height">100dp</dimen>
+    <dimen name="more_card_view_margin_top">20dp</dimen>
+    <dimen name="more_card_view_corner_radius">2dp</dimen>
+    <dimen name="more_card_view_elevation">2dp</dimen>
+    <dimen name="more_photo_width">70dp</dimen>
+    <dimen name="more_photo_height">70dp</dimen>
+    <dimen name="more_photo_margin_left">10dp</dimen>
+    <dimen name="more_info_margin_left">20dp</dimen>
+    <dimen name="more_info_distance">10dp</dimen>
+    <dimen name="more_info_drawable_padding">15dp</dimen>
+    <dimen name="more_info_padding">15dp</dimen>
+    <dimen name="more_info_line_margin_left">60dp</dimen>
+
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>

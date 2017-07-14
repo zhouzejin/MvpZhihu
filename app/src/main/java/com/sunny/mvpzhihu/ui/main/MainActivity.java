@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
@@ -19,6 +18,7 @@ import com.sunny.mvpzhihu.ui.main.daily.DailyFragment;
 import com.sunny.mvpzhihu.ui.main.news.NewsFragment;
 import com.sunny.mvpzhihu.ui.main.section.SectionFragment;
 import com.sunny.mvpzhihu.ui.main.theme.ThemeFragment;
+import com.sunny.mvpzhihu.ui.more.MoreActivity;
 import com.sunny.mvpzhihu.utils.ActivityUtil;
 
 import java.util.HashMap;
@@ -95,7 +95,7 @@ public class MainActivity extends BaseActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_more:
-                Toast.makeText(this, "更多选项", Toast.LENGTH_LONG).show();
+                startActivity(new Intent(this, MoreActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);
