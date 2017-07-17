@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/activity_background"
+              android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/app_bar_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:popupTheme="@style/Theme.AppCompat.Light"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <com.sunny.mvpzhihu.widget.SpringScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <com.sunny.mvpzhihu.widget.CircleImageView
+                android:layout_width="@dimen/my_photo_width"
+                android:layout_height="@dimen/my_photo_height"
+                android:layout_marginBottom="@dimen/my_photo_margin_bottom"
+                android:layout_marginTop="@dimen/my_photo_margin_top"
+                android:src="@drawable/src_my_photo"
+                app:border_color="@android:color/darker_gray"
+                app:border_width="@dimen/my_photo_border_width"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/nickname"
+                android:textColor="@color/text_color_normal"
+                android:textSize="@dimen/text_large_body"/>
+
+            <View
+                android:layout_width="@dimen/my_info_line_width"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/my_info_line_margin_top"
+                android:background="@android:color/darker_gray"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/my_info_margin_top"
+                android:autoLink="web"
+                android:text="@string/github"
+                android:textSize="@dimen/text_small_body"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/my_info_margin_top"
+                android:autoLink="web"
+                android:text="@string/micro_blog"
+                android:textSize="@dimen/text_small_body"/>
+        </LinearLayout>
+    </com.sunny.mvpzhihu.widget.SpringScrollView>
+</LinearLayout>

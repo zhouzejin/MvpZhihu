@@ -30,6 +30,9 @@
     <string name="feedback">意见反馈</string>
     <string name="common_setting">通用设置</string>
     <string name="about_app">关于知乎日报</string>
+    <string name="github">GitHub:https://github.com/zhouzejin</string>
+    <string name="micro_blog">微博:https://m.weibo.cn/u/3201750723</string>
+    <string name="about_me">关于我</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>

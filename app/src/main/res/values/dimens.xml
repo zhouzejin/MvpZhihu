@@ -142,6 +142,16 @@
     <dimen name="more_info_padding">15dp</dimen>
     <dimen name="more_info_line_margin_left">60dp</dimen>
 
+    <!-- My Info -->
+    <dimen name="my_photo_width">100dp</dimen>
+    <dimen name="my_photo_height">100dp</dimen>
+    <dimen name="my_photo_margin_top">20dp</dimen>
+    <dimen name="my_photo_margin_bottom">40dp</dimen>
+    <dimen name="my_photo_border_width">1dp</dimen>
+    <dimen name="my_info_line_width">120dp</dimen>
+    <dimen name="my_info_line_margin_top">10dp</dimen>
+    <dimen name="my_info_margin_top">30dp</dimen>
+
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>
