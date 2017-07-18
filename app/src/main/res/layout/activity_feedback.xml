@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/activity_background"
+              android:orientation="vertical">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:elevation="@dimen/app_bar_elevation"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:popupTheme="@style/Theme.AppCompat.Light"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/feedback_hint_padding"
+        android:text="@string/input_feedback"
+        android:textColor="@color/text_color_gary"
+        android:textSize="@dimen/text_body"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/line_background"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/feedback_input_height"
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="@dimen/feedback_input_padding">
+
+        <EditText
+            android:id="@+id/edt_feedback"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="top"
+            android:inputType="textMultiLine"
+            android:maxLength="160"
+            android:textColor="@color/text_color_normal"
+            android:textSize="@dimen/text_large_body"/>
+
+        <TextView
+            android:id="@+id/tv_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:text="@string/feedback_length"
+            android:textColor="@color/text_color_gary"
+            android:textSize="@dimen/text_body"/>
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/line_background"/>
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/feedback_submit_height"
+        android:layout_margin="@dimen/feedback_submit_margin"
+        android:background="@drawable/selector_button"
+        android:gravity="center"
+        android:text="@string/submit"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/text_body"/>
+</LinearLayout>

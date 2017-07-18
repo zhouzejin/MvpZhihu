@@ -50,6 +50,7 @@ public class MoreActivity extends BaseActivity {
                 startActivity(new Intent(this, MyInfoActivity.class));
                 break;
             case R.id.tv_feedback:
+                startActivity(new Intent(this, FeedbackActivity.class));
                 break;
             case R.id.tv_setting:
                 break;

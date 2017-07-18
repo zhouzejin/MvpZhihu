@@ -152,6 +152,13 @@
     <dimen name="my_info_line_margin_top">10dp</dimen>
     <dimen name="my_info_margin_top">30dp</dimen>
 
+    <!-- Feedback -->
+    <dimen name="feedback_hint_padding">10dp</dimen>
+    <dimen name="feedback_input_height">250dp</dimen>
+    <dimen name="feedback_input_padding">10dp</dimen>
+    <dimen name="feedback_submit_height">45dp</dimen>
+    <dimen name="feedback_submit_margin">20dp</dimen>
+
     <!-- Text Size -->
     <dimen name="text_headline">24sp</dimen>
     <dimen name="text_large_title">22sp</dimen>
