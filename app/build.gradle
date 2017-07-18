@@ -61,6 +61,8 @@ android {
 
             ext.betaDistributionReleaseNotesFilePath =
                     file('../crashlytics_release_notes.txt').absolutePath
+
+            buildConfigField("String", "BMOB_APP_ID", '"094b8a3e9c2bf7c642dd700fa26e2f04"')
         }
 
         debug {
@@ -68,6 +70,8 @@ android {
 
             versionNameSuffix "Debug"
             debuggable true
+
+            buildConfigField("String", "BMOB_APP_ID", '"094b8a3e9c2bf7c642dd700fa26e2f04"')
         }
     }
 

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Toast;
 
 import com.sunny.mvpzhihu.R;
 import com.sunny.mvpzhihu.ui.base.BaseActivity;
@@ -53,6 +54,7 @@ public class MoreActivity extends BaseActivity {
                 startActivity(new Intent(this, FeedbackActivity.class));
                 break;
             case R.id.tv_setting:
+                Toast.makeText(this, "敬请期待！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_about:
                 break;

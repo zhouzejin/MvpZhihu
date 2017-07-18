@@ -36,6 +36,9 @@
     <string name="input_feedback">请输入您的宝贵意见</string>
     <string name="feedback_length">160</string>
     <string name="submit">提交</string>
+    <string name="content_empty">输入的内容为空</string>
+    <string name="submit_success">提交成功</string>
+    <string name="submit_fail">提交失败</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>
