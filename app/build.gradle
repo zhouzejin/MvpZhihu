@@ -191,4 +191,5 @@ dependencies {
     // https://github.com/rharter/auto-value-parcel/issues/64
 
     compile project(path: ':SwipeBackLayout')
+    compile fileTree(includes: ['*jar'], dir: 'libs')
 }
