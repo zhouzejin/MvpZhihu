@@ -39,6 +39,15 @@
     <string name="content_empty">输入的内容为空</string>
     <string name="submit_success">提交成功</string>
     <string name="submit_fail">提交失败</string>
+    <string name="about_introduce_and_help">介绍与帮助</string>
+    <string name="about_introduce">「知道」- 每天3次，每次7分钟\n\n项目基于Dagger + RxJava + Retrofit实现，采用MVP架构，UI参考HotBitmapGG的RxZhiHu开源项目，灵感来自知乎日报客户端，喜欢的朋友们可以star一下，谢谢啦~\n\nGitHub地址：https://github.com/zhouzejin/MvpZhihu</string>
+    <string name="about_function">功能介绍</string>
+    <string name="about_function_list">1.日报列表\n2.日报详情\n3.主题日报\n4.日报专栏\n5.热门新闻\n6.日报评论\n7.日报分享</string>
+    <string name="about_used_open_source">使用的开源项目</string>
+    <string name="about_used_open_source_list">com.google.dagger:dagger:2.5\nio.reactivex:rxjava:1.1.6\nio.reactivex:rxandroid:1.2.1\ncom.squareup.retrofit2:retrofit:2.1.0\ncom.squareup.sqlbrite:sqlbrite:1.1.1\ncom.github.bumptech.glide:glide:3.7.0\ncom.jakewharton:butterknife:8.4.0\ncom.jakewharton.timber:timber:4.1.2</string>
+    <string name="about_star_other_project">欢迎关注我的其他开源项目</string>
+    <string name="about_other_project_list">*</string>
+    <string name="about_version">版本号：v%1$s</string>
 
     <string name="dialog_action_ok">OK</string>
     <string name="dialog_action_cancel">Cancel</string>

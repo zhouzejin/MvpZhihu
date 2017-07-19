@@ -57,6 +57,7 @@ public class MoreActivity extends BaseActivity {
                 Toast.makeText(this, "敬请期待！", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_about:
+                startActivity(new Intent(this, AboutActivity.class));
                 break;
         }
     }
