@@ -14,8 +14,8 @@ import javax.inject.Singleton;
 @Singleton
 public class DbOpenHelper extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "ribots.db";
-    public static final int DATABASE_VERSION = 2;
+    public static final String DATABASE_NAME = "zhihu.db";
+    public static final int DATABASE_VERSION = 1;
 
     @Inject
     public DbOpenHelper(@ApplicationContext Context context) {

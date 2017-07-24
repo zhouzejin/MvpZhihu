@@ -11,7 +11,7 @@ import javax.inject.Singleton;
 @Singleton
 public class PreferencesHelper {
 
-    private static final String PREF_FILE_NAME = "android_boilerplate_pref_file";
+    private static final String PREF_FILE_NAME = "zhihu_pref_file";
 
     public static final String IS_SHOW_SWIPE_BACK_HINT = "is_show_swipe_back_hint";
 
