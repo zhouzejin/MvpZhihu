@@ -30,7 +30,7 @@ public class DatabaseHelper {
     @Inject
     public DatabaseHelper(DbOpenHelper dbOpenHelper) {
         SqlBrite.Builder briteBuilder = new SqlBrite.Builder();
-        mDb = briteBuilder.build().wrapDatabaseHelper(dbOpenHelper, Schedulers.immediate());
+        mDb = briteBuilder.build().wrapDatabaseHelper(dbOpenHelper, Schedulers.io());
     }
 
     public BriteDatabase getBriteDb() {
