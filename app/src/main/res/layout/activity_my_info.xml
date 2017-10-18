@@ -67,6 +67,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/my_info_margin_top"
                 android:autoLink="web"
+                android:text="@string/jian_shu"
+                android:textSize="@dimen/text_small_body"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/my_info_margin_top"
+                android:autoLink="web"
                 android:text="@string/micro_blog"
                 android:textSize="@dimen/text_small_body"/>
         </LinearLayout>

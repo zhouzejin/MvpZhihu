@@ -32,6 +32,7 @@
     <string name="about_app">关于知道</string>
     <string name="github">GitHub:https://github.com/zhouzejin</string>
     <string name="micro_blog">微博:https://m.weibo.cn/u/3201750723</string>
+    <string name="jian_shu">简书:http://www.jianshu.com/u/ffd32e08018c</string>
     <string name="about_me">关于我</string>
     <string name="input_feedback">请输入您的宝贵意见</string>
     <string name="feedback_length">160</string>
@@ -46,7 +47,7 @@
     <string name="about_used_open_source">使用的开源项目</string>
     <string name="about_used_open_source_list">com.google.dagger:dagger:2.11\nio.reactivex:rxjava:1.3.0\nio.reactivex:rxandroid:1.2.1\ncom.squareup.retrofit2:retrofit:2.3.0\ncom.squareup.sqlbrite:sqlbrite:1.1.2\ncom.github.bumptech.glide:glide:3.8.0\ncom.jakewharton:butterknife:8.7.0\ncom.jakewharton.timber:timber:4.5.1</string>
     <string name="about_star_other_project">欢迎关注我的其他开源项目</string>
-    <string name="about_other_project_list">*</string>
+    <string name="about_other_project_list">第三方哔哩哔哩客户端(采用MVVM架构)：https://github.com/zhouzejin/MvvmBilibili\n</string>
     <string name="about_version">版本号：v%1$s</string>
 
     <string name="dialog_action_ok">OK</string>
