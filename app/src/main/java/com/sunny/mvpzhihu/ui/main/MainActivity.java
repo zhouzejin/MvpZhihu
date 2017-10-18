@@ -20,6 +20,7 @@ import com.sunny.mvpzhihu.ui.main.section.SectionFragment;
 import com.sunny.mvpzhihu.ui.main.theme.ThemeFragment;
 import com.sunny.mvpzhihu.ui.more.MoreActivity;
 import com.sunny.mvpzhihu.utils.ActivityUtil;
+import com.sunny.mvpzhihu.utils.ViewUtil;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -138,6 +139,7 @@ public class MainActivity extends BaseActivity {
                         // Do nothing!
                     }
                 });
+        ViewUtil.setBottomNavigationShiftMode(mBottomNavigation, false, false);
     }
 
     private void showFragment(String tag) {
