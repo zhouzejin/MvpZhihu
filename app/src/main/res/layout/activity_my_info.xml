@@ -55,19 +55,19 @@
                 android:background="@android:color/darker_gray"/>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/my_info_margin_top"
-                android:autoLink="web"
-                android:text="@string/github"
-                android:textSize="@dimen/text_small_body"/>
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/my_info_margin_top"
+            android:autoLink="web"
+            android:text="@string/my_blog"
+            android:textSize="@dimen/text_small_body"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/my_info_margin_top"
                 android:autoLink="web"
-                android:text="@string/jian_shu"
+                android:text="@string/github"
                 android:textSize="@dimen/text_small_body"/>
 
             <TextView
