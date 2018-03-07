@@ -1,6 +1,7 @@
 package com.sunny.mvpzhihu.ui.base;
 
 import android.os.Bundle;
+import android.support.v4.util.LongSparseArray;
 
 import com.sunny.mvpzhihu.ZhiHuApplication;
 import com.sunny.mvpzhihu.injection.component.ActivityComponent;
@@ -10,8 +11,6 @@ import com.sunny.mvpzhihu.injection.module.ActivityModule;
 import com.sunny.mvpzhihu.utils.LogUtil;
 import com.sunny.swipebacklayout.app.SwipeBackActivity;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicLong;
 
 import butterknife.ButterKnife;
@@ -27,7 +26,8 @@ public abstract class BaseActivity extends SwipeBackActivity {
     private static final String KEY_ACTIVITY_ID = "KEY_ACTIVITY_ID";
     private static final AtomicLong NEXT_ID = new AtomicLong(0);
 
-    private static Map<Long, ConfigPersistentComponent> sComponentsMap = new HashMap<>();
+    private static LongSparseArray<ConfigPersistentComponent> sComponentsMap =
+            new LongSparseArray<>();
 
     private ConfigPersistentComponent mConfigPersistentComponent;
     private ActivityComponent mActivityComponent;
@@ -87,15 +87,13 @@ public abstract class BaseActivity extends SwipeBackActivity {
     private void createComponent(Bundle savedInstanceState) {
         mActivityId = savedInstanceState != null ?
                 savedInstanceState.getLong(KEY_ACTIVITY_ID) : NEXT_ID.getAndIncrement();
-        if (!sComponentsMap.containsKey(mActivityId)) {
+        mConfigPersistentComponent = sComponentsMap.get(mActivityId, null);
+        if (mConfigPersistentComponent == null) {
             LogUtil.i("Creating new ConfigPersistentComponent id=%d", mActivityId);
             mConfigPersistentComponent = DaggerConfigPersistentComponent.builder()
                     .applicationComponent(ZhiHuApplication.get(this).getComponent())
                     .build();
             sComponentsMap.put(mActivityId, mConfigPersistentComponent);
-        } else {
-            LogUtil.i("Reusing ConfigPersistentComponent id=%d", mActivityId);
-            mConfigPersistentComponent = sComponentsMap.get(mActivityId);
         }
     }
 
