@@ -22,14 +22,14 @@
 
 ## 使用的开源项目
 
-com.google.dagger:dagger:2.5  
-io.reactivex:rxjava:1.1.6  
+com.google.dagger:dagger:2.11
+io.reactivex:rxjava:1.3.6
 io.reactivex:rxandroid:1.2.1  
-com.squareup.retrofit2:retrofit:2.1.0  
-com.squareup.sqlbrite:sqlbrite:1.1.1  
-com.github.bumptech.glide:glide:3.7.0  
-com.jakewharton:butterknife:8.4.0  
-com.jakewharton.timber:timber:4.1.2  
+com.squareup.retrofit2:retrofit:2.3.0
+com.squareup.sqlbrite:sqlbrite:1.1.2
+com.github.bumptech.glide:glide:3.8.0
+com.jakewharton:butterknife:8.7.0
+com.jakewharton.timber:timber:4.5.1
 
 ## 欢迎关注我的其他开源项目
 
