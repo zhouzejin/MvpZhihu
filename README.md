@@ -22,10 +22,11 @@
 
 ## 界面展示
 
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报专栏.png" height="23%" width="23%" alt="日报专栏" align=left />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报评论.png" height="23%" width="23%" alt="日报评论" align=left />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="23%" width="23%" alt="日报详情" align=right />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报列表.png" height="23%" width="23%" alt="日报列表" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报专栏.png" height="22%" width="22%" alt="日报专栏" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报评论.png" height="22%" width="22%" alt="日报评论" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="22%" width="22%" alt="日报详情" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报列表.png" height="22%" width="22%" alt="日报列表" align=right />
+
 
 ## 使用的开源项目
 
