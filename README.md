@@ -22,10 +22,7 @@
 
 ## 界面展示
 
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报专栏.png" height="22.8%" width="22.8%" alt="日报专栏" align=right />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报评论.png" height="22.8%" width="22.8%" alt="日报评论" align=right />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="22.8%" width="22.8%" alt="日报详情" align=right />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报列表.png" height="22.8%" width="22.8%" alt="日报列表" align=right />
+<a href="images/日报列表.png"><img src="images/日报列表.png" width="22%"/></a> <a href="images/日报详情.png"><img src="日报详情/01.png" width="22%"/></a> <a href="images/日报评论.png"><img src="art/日报评论.png" width="22%"/></a> <a href="images/日报专栏.png"><img src="日报专栏/01.png" width="22%"/></a>
 
 ## 使用的开源项目
 
