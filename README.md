@@ -22,7 +22,7 @@
 
 ## 界面展示
 
-<a href="images/日报列表.png"><img src="images/日报列表.png" width="25%"/></a> <a href="images/日报详情.png"><img src="images/日报详情.png" width="25%"/></a> <a href="images/日报评论.png"><img src="images/日报评论.png" width="25%"/></a> <a href="images/日报专栏.png"><img src="images/日报专栏.png" width="25%"/></a>
+<a href="images/日报列表.png"><img src="images/日报列表.png" width="24%"/></a> <a href="images/日报详情.png"><img src="images/日报详情.png" width="24%"/></a> <a href="images/日报评论.png"><img src="images/日报评论.png" width="24%"/></a> <a href="images/日报专栏.png"><img src="images/日报专栏.png" width="24%"/></a>
 
 ## 使用的开源项目
 
