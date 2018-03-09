@@ -23,13 +23,9 @@
 ## 界面展示
 
 <img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报专栏.png" height="22%" width="22%" alt="日报专栏" align=right />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报评论.png" height="22%" width="22%" alt="日报评论" align=right />
-<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="22%" width="22%" alt="日报详情" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报评论.png" height="22%" width="23%" alt="日报评论" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="22%" width="23%" alt="日报详情" align=right />
 <img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报列表.png" height="22%" width="22%" alt="日报列表" align=right />
-
-## 欢迎关注我的其他开源项目
-
-第三方哔哩哔哩客户端(采用MVVM架构)：https://github.com/zhouzejin/MvvmBilibili
 
 ## 使用的开源项目
 
@@ -41,6 +37,10 @@ com.squareup.sqlbrite:sqlbrite:1.1.2<br/>
 com.github.bumptech.glide:glide:3.8.0<br/>
 com.jakewharton:butterknife:8.7.0<br/>
 com.jakewharton.timber:timber:4.5.1<br/>
+
+## 欢迎关注我的其他开源项目
+
+第三方哔哩哔哩客户端(采用MVVM架构)：https://github.com/zhouzejin/MvvmBilibili
 
 ## 声明
 
