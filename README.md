@@ -20,6 +20,13 @@
 6.日报评论  
 7.日报分享
 
+## 界面展示
+
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="20%" width="20%" alt="日报专栏" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="20%" width="20%" alt="日报评论" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报详情.png" height="20%" width="20%" alt="日报详情" align=right />
+<img src="https://github.com/zhouzejin/MvpZhihu/raw/master/images/日报列表.png" height="20%" width="20%" alt="日报列表" align=right />
+
 ## 使用的开源项目
 
 com.google.dagger:dagger:2.11<br/>
